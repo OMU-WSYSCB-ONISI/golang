@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/devcontainers/base:debian AS builder
 
 # 環境変数の設定
-ENV GO_VERSION=1.23 \
+ENV GO_VERSION=1.25.3 \
     DEBIAN_FRONTEND=noninteractive
 
 # システムパッケージの更新とインストール
@@ -82,3 +82,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD go version || exit 1
 
 CMD ["/bin/bash"]
+
