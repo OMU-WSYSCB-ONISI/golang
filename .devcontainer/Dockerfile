@@ -30,6 +30,8 @@ FROM mcr.microsoft.com/devcontainers/base:debian
 LABEL maintainer="onisi@omu.ac.jp"
 LABEL description="Optimized Golang development environment"
 LABEL version="25.10.1"
+LABEL base-os="debian-bookworm"
+LABEL build-date=""
 
 # 環境変数
 ENV GOPATH=/go \
@@ -82,5 +84,6 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD go version || exit 1
 
 CMD ["/bin/bash"]
+
 
 
