@@ -55,15 +55,7 @@
         
         // ターミナル設定
         "terminal.integrated.defaultProfile.linux": "bash",
-        "terminal.integrated.fontSize": 14,
-        
-        // ワークスペース設定
-        "explorer.confirmDelete": false,
-        "explorer.confirmDragAndDrop": false,
-        
-        // Git設定
-        "git.autofetch": true,
-        "git.confirmSync": false
+        "terminal.integrated.fontSize": 14
       }
     }
   },
@@ -115,11 +107,3 @@
   // Prebuild最適化
   "waitFor": "updateContentCommand"
 }
-
-
-
-
-
-
-
-
