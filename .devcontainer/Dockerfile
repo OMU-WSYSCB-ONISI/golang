@@ -27,9 +27,9 @@ RUN wget -q -O go.tar.gz https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz &&
 FROM mcr.microsoft.com/devcontainers/base:debian
 
 # メタデータ
-LABEL maintainer="your-email@example.com"
+LABEL maintainer="onisi@omu.ac.jp"
 LABEL description="Optimized Golang development environment"
-LABEL version="2.3"
+LABEL version="25.10.1"
 
 # 環境変数
 ENV GOPATH=/go \
@@ -82,4 +82,5 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD go version || exit 1
 
 CMD ["/bin/bash"]
+
 
