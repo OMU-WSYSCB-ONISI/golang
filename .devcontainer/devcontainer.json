@@ -2,7 +2,7 @@
   "name": "Golang Development Environment (Debian)",
   
   // 事前ビルドイメージを使用
-  //"image": "ghcr.io/your-username/go-devcontainer:2025spring",
+  "image": " ghcr.io/onisi/omu-sss-websys:2025autumn",
   
   // VS Code設定
   "customizations": {
@@ -56,5 +56,6 @@
   // Prebuild最適化
   "waitFor": "updateContentCommand"
 }
+
 
 
