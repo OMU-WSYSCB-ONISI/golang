@@ -20,17 +20,48 @@
       ],
       
       "settings": {
+        // ===== AI補完機能の無効化 =====
         "github.copilot.enable": {
           "*": false
         },
+        "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+        "tabnine.experimentalAutoImports": false,
+        
+        // ===== Go設定 =====
         "go.useLanguageServer": true,
         "go.lintTool": "golangci-lint",
+        "go.lintOnSave": "package",
         "go.formatTool": "goimports",
-        "editor.formatOnSave": true,
-        "[go]": {
-          "editor.defaultFormatter": "golang.go"
+        "go.toolsManagement.autoUpdate": true,
+        
+        // gopls設定
+        "gopls": {
+          "ui.semanticTokens": true,
+          "analyses": {
+            "unusedparams": true,
+            "shadow": true
+          }
         },
-        "files.autoSave": "afterDelay"
+        
+        // エディター設定
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        
+        "[go]": {
+          "editor.defaultFormatter": "golang.go",
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+        
+        // ファイル設定
+        "files.autoSave": "afterDelay",
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true,
+        
+        // ターミナル設定
+        "terminal.integrated.defaultProfile.linux": "bash"
       }
     }
   },
@@ -62,6 +93,7 @@
   // Prebuild最適化
   "waitFor": "updateContentCommand"
 }
+
 
 
 
