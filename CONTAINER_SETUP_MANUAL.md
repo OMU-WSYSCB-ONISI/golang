@@ -89,6 +89,8 @@ cd .devcontainer
 podman build \
   --tag ghcr.io/your-username/go-devcontainer:latest \
   --tag ghcr.io/your-username/go-devcontainer:2025spring \
+  --label "build-date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+  --label "security-updated=yes" \
   .
 
 # ビルド成功の確認
@@ -378,16 +380,53 @@ docker push ghcr.io/your-username/go-devcontainer:go1.23
 
 ### タグの使い分け
 
-| タグ | 用途 | 推奨 |
-|------|------|------|
-| `latest` | 常に最新版 | ✅ 推奨 |
-| `2025spring` | 学期固定版 | ⭐ 推奨（ロールバック用） |
-| `go1.23` | Go版固定 | オプション |
+| タグ | 推奨度 | 理由 |
+|------|--------|------|
+| `2025spring` | ⭐⭐⭐ 最推奨 | 学期中は不変 |
+| `go1.23` | ⭐⭐ 推奨 | Go版明示 |
+| `latest` | ⚠️ 非推奨 | 予期しない更新 |
 
 **devcontainer.jsonでは `latest` を使用**
 
 ---
 
+- **セキュリティアップデートのポリシー**
+  - 基本方針の明記
+  - 緊急時の対応手順
+  - セキュリティアップデートの確認方法
+
+---
+
+## 🔒 セキュリティ運用方針
+
+### 通常時（推奨）
+```
+【学期初め】
+1. Dockerfileをビルド
+2. 最新のセキュリティパッチが自動適用
+3. 学期タグでプッシュ（例: 2025spring）
+4. devcontainer.jsonで学期タグを指定
+
+【学期中】
+- 同じイメージを使用
+- 再ビルド不要
+- 安定した環境を維持
+```
+
+### 緊急時（重大な脆弱性発見時のみ）
+```
+【対応手順】
+1. 脆弱性情報の確認
+2. 緊急再ビルド
+3. パッチタグでプッシュ（例: 2025spring-patch1）
+4. 学生に通知・更新指示
+
+【学生への通知例】
+「重要なセキュリティパッチのため、
+環境を更新してください。
+1. devcontainer.jsonのimageを
+   2025spring-patch1 に変更
+2. Ctrl+Shift+P → Rebuild Container」
 ## 📊 この方法の利点まとめ
 
 ### 学生側
@@ -434,3 +473,4 @@ docker push ghcr.io/your-username/go-devcontainer:go1.23
 6. 動作確認
 
 **この手順で、高速起動かつメンテナンスフリーの環境が実現します！** 🚀
+
