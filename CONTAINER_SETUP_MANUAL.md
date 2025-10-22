@@ -419,7 +419,7 @@ docker push ghcr.io/your-username/go-devcontainer:go1.23
 1. devcontainer.jsonのimageを
    2025spring-patch1 に変更
 2. Ctrl+Shift+P → Rebuild Container
-
+```
 
 ## 📊 この方法の利点まとめ
 
@@ -467,5 +467,6 @@ docker push ghcr.io/your-username/go-devcontainer:go1.23
 6. 動作確認
 
 **この手順で、高速起動かつメンテナンスフリーの環境が実現します！** 🚀
+
 
 
