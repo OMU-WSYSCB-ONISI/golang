@@ -55,7 +55,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-USER vscode
+#USER vscode
 
 # Go作業ディレクトリ
 RUN mkdir -p /go/src /go/bin /go/pkg
@@ -74,5 +74,6 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD go version || exit 1
 
 CMD ["/bin/bash"]
+
 
 
