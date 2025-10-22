@@ -30,23 +30,16 @@
         // ===== Go設定 =====
         "go.useLanguageServer": true,
         "go.lintTool": "golangci-lint",
-        "go.lintOnSave": "package",
+        "go.lintOnSave": "workspace",
         "go.formatTool": "goimports",
-        "go.toolsManagement.autoUpdate": true,
-        
-        // gopls設定
-        "gopls": {
-          "ui.semanticTokens": true,
-          "analyses": {
-            "unusedparams": true,
-            "shadow": true
-          }
-        },
+        "go.buildOnSave": "off",
+        "go.vetOnSave": "off",
         
         // エディター設定
-        "editor.formatOnSave": true,
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 1000,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
         
         "[go]": {
           "editor.defaultFormatter": "golang.go",
@@ -61,14 +54,34 @@
         "files.trimTrailingWhitespace": true,
         
         // ターミナル設定
-        "terminal.integrated.defaultProfile.linux": "bash"
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.fontSize": 14,
+        
+        // ワークスペース設定
+        "explorer.confirmDelete": false,
+        "explorer.confirmDragAndDrop": false,
+        
+        // Git設定
+        "git.autofetch": true,
+        "git.confirmSync": false
       }
     }
   },
   
-  // 起動時間短縮のための最小限コマンド
-  "postCreateCommand": "go version",
+  // 機能の明示的な設定
+  "features": {
+    // docker-in-dockerを明示的に無効化
+    // "ghcr.io/devcontainers/features/docker-in-docker:2": {
+    //   "version": "latest"
+    // }
+  },
   
+  // ライフサイクルコマンド
+  "postCreateCommand": "go version && go env",
+  "postStartCommand": "echo 'Codespace ready!'",
+  "updateContentCommand": "go mod download || true",
+  
+  // ユーザー設定  
   "remoteUser": "vscode",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   
@@ -82,10 +95,19 @@
     }
   },
   
-  // Go module cache永続化
+  // マウント設定
   "mounts": [
-    "source=go-mod-cache,target=/go/pkg/mod,type=volume"
+    // Go module cache永続化
+    "source=go-mod-cache,target=/go/pkg/mod,type=volume",
+    // Go build cache永続化（オプション）
+    "source=go-build-cache,target=/home/vscode/.cache/go-build,type=volume"
   ],
+  
+  // 環境変数
+  "containerEnv": {
+    "TZ": "Asia/Tokyo",
+    "LANG": "ja_JP.UTF-8"
+  },
   
   // Prebuild設定（起動時間短縮）
   "updateContentCommand": "go mod download || true",
@@ -93,6 +115,7 @@
   // Prebuild最適化
   "waitFor": "updateContentCommand"
 }
+
 
 
 
