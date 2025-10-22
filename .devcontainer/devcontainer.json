@@ -56,7 +56,9 @@
         
         // ターミナル設定
         "terminal.integrated.defaultProfile.linux": "bash",
-        "terminal.integrated.fontSize": 14
+        "terminal.integrated.fontSize": 14,
+
+        "workbench.secondarySideBar.defaultVisibility": "hidden"
       }
     }
   },
@@ -108,4 +110,5 @@
   // Prebuild最適化
   "waitFor": "updateContentCommand"
 }
+
 
