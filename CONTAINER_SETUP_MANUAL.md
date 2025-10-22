@@ -386,17 +386,9 @@ docker push ghcr.io/your-username/go-devcontainer:go1.23
 | `go1.23` | ⭐⭐ 推奨 | Go版明示 |
 | `latest` | ⚠️ 非推奨 | 予期しない更新 |
 
-**devcontainer.jsonでは `latest` を使用**
+**devcontainer.jsonでは `2025spring` 等を使用**
 
 ---
-
-- **セキュリティアップデートのポリシー**
-  - 基本方針の明記
-  - 緊急時の対応手順
-  - セキュリティアップデートの確認方法
-
----
-
 ## 🔒 セキュリティ運用方針
 
 ### 通常時（推奨）
@@ -426,7 +418,9 @@ docker push ghcr.io/your-username/go-devcontainer:go1.23
 環境を更新してください。
 1. devcontainer.jsonのimageを
    2025spring-patch1 に変更
-2. Ctrl+Shift+P → Rebuild Container」
+2. Ctrl+Shift+P → Rebuild Container
+
+
 ## 📊 この方法の利点まとめ
 
 ### 学生側
@@ -473,4 +467,5 @@ docker push ghcr.io/your-username/go-devcontainer:go1.23
 6. 動作確認
 
 **この手順で、高速起動かつメンテナンスフリーの環境が実現します！** 🚀
+
 
