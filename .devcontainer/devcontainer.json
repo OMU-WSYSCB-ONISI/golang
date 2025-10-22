@@ -1,0 +1,58 @@
+{
+  "name": "Golang Development Environment (Debian)",
+  
+  // 事前ビルドイメージを使用
+  //"image": "ghcr.io/your-username/go-devcontainer:2025spring",
+  
+  // VS Code設定
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.Go",
+        "eamodio.gitlens",
+        "ms-ceintl.vscode-language-pack-ja"
+      ],
+      
+      "settings": {
+        "github.copilot.enable": {
+          "*": false
+        },
+        "go.useLanguageServer": true,
+        "go.lintTool": "golangci-lint",
+        "go.formatTool": "goimports",
+        "editor.formatOnSave": true,
+        "[go]": {
+          "editor.defaultFormatter": "golang.go"
+        },
+        "files.autoSave": "afterDelay"
+      }
+    }
+  },
+  
+  // 起動時間短縮のための最小限コマンド
+  "postCreateCommand": "go version",
+  
+  "remoteUser": "vscode",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  
+  // ポートフォワーディング
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Application",
+      "onAutoForward": "notify",
+      "visibility": "public"
+    }
+  },
+  
+  // Go module cache永続化
+  "mounts": [
+    "source=go-mod-cache,target=/go/pkg/mod,type=volume"
+  ],
+  
+  // Prebuild設定（起動時間短縮）
+  "updateContentCommand": "go mod download || true",
+  
+  // Prebuild最適化
+  "waitFor": "updateContentCommand"
+}
