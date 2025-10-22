@@ -32,7 +32,7 @@
   // 起動時間短縮のための最小限コマンド
   "postCreateCommand": "go version",
   
-  "remoteUser": "vscode",
+  "remoteUser": "root",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   
   // ポートフォワーディング
@@ -56,3 +56,4 @@
   // Prebuild最適化
   "waitFor": "updateContentCommand"
 }
+
