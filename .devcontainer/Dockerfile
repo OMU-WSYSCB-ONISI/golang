@@ -83,7 +83,7 @@ RUN mkdir -p /workspaces && \
 USER vscode
 
 # Go開発ツール（最小限・並列インストール）
-RUN go install golang.org/x/tools/gopls@v0.14.2 & \
+RUN go install golang.org/x/tools/gopls@latest & \
     go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.62.2 & \
     go install golang.org/x/tools/cmd/goimports@v0.14.0 & \
     go install github.com/go-delve/delve/cmd/dlv@latest & \
@@ -102,6 +102,7 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 # デフォルトコマンド
 CMD ["/bin/bash"]
+
 
 
 
