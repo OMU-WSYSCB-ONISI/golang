@@ -1,9 +1,9 @@
-# Golang開発環境用Dockerfile（最終最適化版）
+# Golang開発環境用Dockerfile（修正版）
 # マルチステージビルドでイメージサイズを削減
 FROM mcr.microsoft.com/devcontainers/base:debian AS builder
 
 # 環境変数の設定
-ENV GO_VERSION=1.25.3 \
+ENV GO_VERSION=1.23 \
     DEBIAN_FRONTEND=noninteractive
 
 # システムパッケージの更新とインストール
@@ -19,7 +19,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Goのインストール
-RUN wget -q -O go.tar.gz https://go.dev/dl/go1.25.3.linux-amd64.tar.gz && \
+RUN wget -q -O go.tar.gz https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go.tar.gz && \
     rm go.tar.gz
 
@@ -29,7 +29,7 @@ FROM mcr.microsoft.com/devcontainers/base:debian
 # メタデータ
 LABEL maintainer="your-email@example.com"
 LABEL description="Optimized Golang development environment"
-LABEL version="2.2"
+LABEL version="2.3"
 
 # 環境変数
 ENV GOPATH=/go \
@@ -55,10 +55,18 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#USER vscode
+# Go作業ディレクトリをrootユーザーで作成し、vscodeユーザーに所有権を付与
+RUN mkdir -p /go/src /go/bin /go/pkg && \
+    chown -R vscode:vscode /go && \
+    chmod -R 755 /go
 
-# Go作業ディレクトリ
-RUN mkdir -p /go/src /go/bin /go/pkg
+# /workspacesディレクトリの作成と所有権設定
+RUN mkdir -p /workspaces && \
+    chown -R vscode:vscode /workspaces && \
+    chmod -R 755 /workspaces
+
+# vscodeユーザーに切り替え
+USER vscode
 
 # Go開発ツール（最小限・並列インストール）
 RUN go install golang.org/x/tools/gopls@v0.14.2 & \
@@ -74,6 +82,3 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD go version || exit 1
 
 CMD ["/bin/bash"]
-
-
-
