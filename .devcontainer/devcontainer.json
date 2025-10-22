@@ -16,6 +16,7 @@
       "extensions": [
         "golang.Go",
         "eamodio.gitlens",
+        "formulahendry.code-runner",
         "ms-ceintl.vscode-language-pack-ja"
       ],
       
@@ -107,3 +108,4 @@
   // Prebuild最適化
   "waitFor": "updateContentCommand"
 }
+
