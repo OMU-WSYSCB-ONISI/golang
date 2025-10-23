@@ -39,13 +39,13 @@ RUN --mount=type=cache,target=/tmp/go-cache \
 FROM mcr.microsoft.com/devcontainers/base:debian
 
 # メタデータ
-LABEL maintainer="onisi@omu.ac.jp"
-　　　 description="Optimized Golang development environment for education" \
+LABEL maintainer="onisi@omu.ac.jp" \
+      description="Optimized Golang development environment for education" \
       version="25.10.1" \
       base-os="debian-bookworm" \
-      build-date="" 
-#      org.opencontainers.image.source="https://github.com/OMU-WSYSCB-ONISI/golang" \
-#      org.opencontainers.image.licenses="MIT"　
+      build-date="" \
+      org.opencontainers.image.source="https://github.com/OMU-WSYSCB-ONISI/golang" \
+      org.opencontainers.image.licenses="MIT"　
 
 # ARG for build-time configuration
 ARG GO_VERSION=1.25.3
@@ -131,6 +131,7 @@ CMD ["/bin/bash"]
 # - 非rootユーザー（vscode: UID/GID 1000）で実行
 # - 最小限のパッケージのみインストール
 # - 定期的なセキュリティアップデートを推奨
+
 
 
 
