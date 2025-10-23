@@ -64,9 +64,9 @@ ENV GOPATH=/go \
 COPY --from=builder /usr/local/go /usr/local/go
 
 # システムパッケージのインストールとクリーンアップ（1レイヤー）
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update && \
+#RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+#    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         # 必須パッケージ
         sudo git make gcc ca-certificates \
@@ -131,6 +131,7 @@ CMD ["/bin/bash"]
 # - 非rootユーザー（vscode: UID/GID 1000）で実行
 # - 最小限のパッケージのみインストール
 # - 定期的なセキュリティアップデートを推奨
+
 
 
 
