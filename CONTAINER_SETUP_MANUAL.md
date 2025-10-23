@@ -1,4 +1,4 @@
-# コンテナイメージ作成：手動ビルド版ガイド（教員向け）
+# コンテナイメージ作成：手動ビルド版ガイド（教員向け・Podman版）
 
 ## 📋 概要
 
@@ -7,7 +7,7 @@
 **所要時間**: 約20分（学期初めに1回のみ）  
 **前提条件**: Podman がインストール済み
 
-**使用ツール**: Podman のみ（Dockerは不要）
+**使用ツール**: Podman のみ
 
 **セキュリティ**: ビルド時に最新のセキュリティアップデートが適用され、学期を通じて同じイメージを使用します。
 
@@ -19,6 +19,7 @@
 - ✅ GitHub Actions不要（手動ビルド）
 - ✅ 学期中のメンテナンスほぼゼロ
 - ✅ 教員が完全にコントロール
+- ✅ Podmanのrootless実行でセキュリティ向上
 
 ---
 
@@ -37,7 +38,7 @@
 2. **Expiration**: `No expiration`（または学期終了日）
 3. **Scopes**: 以下にチェック
    - ✅ `write:packages` - パッケージの書き込み
-   - ✅ `read:packages` - パッケージの読み取り
+   - ✅ `read:packages` - パッケージの読み取み
    - ✅ `delete:packages` - パッケージの削除（オプション）
 
 4. 「**Generate token**」をクリック
@@ -51,9 +52,36 @@
 
 ---
 
-### ステップ2: ローカルでイメージをビルド（5分）
+### ステップ2: Podman環境の確認（1分）
 
-#### 2-1. リポジトリをクローン
+#### 2-1. Podmanのバージョン確認
+
+```bash
+# Podmanがインストールされているか確認
+podman --version
+
+# 期待される出力例:
+# podman version 4.9.0
+```
+
+#### 2-2. 環境変数の設定（重要）
+
+```bash
+# Docker image formatを使用（HEALTHCHECKサポートのため）
+export BUILDAH_FORMAT=docker
+
+# 永続化する場合は ~/.bashrc または ~/.zshrc に追加
+echo 'export BUILDAH_FORMAT=docker' >> ~/.bashrc
+source ~/.bashrc
+```
+
+**理由**: HEALTHCHECKはDocker image formatでのみサポートされます。OCI formatではHEALTHCHECKメタデータが保存されません。
+
+---
+
+### ステップ3: ローカルでイメージをビルド（5分）
+
+#### 3-1. リポジトリをクローン
 
 ```bash
 # ローカルにクローン
@@ -61,61 +89,37 @@ git clone https://github.com/your-username/your-repository.git
 cd your-repository
 ```
 
-#### 2-2. イメージをビルド
-
-**Docker使用の場合**:
+#### 3-2. イメージをビルド
 
 ```bash
 # .devcontainerディレクトリに移動
 cd .devcontainer
 
-# イメージをビルド
-docker build \
-  --tag ghcr.io/your-username/go-devcontainer:latest \
-  --tag ghcr.io/your-username/go-devcontainer:2025spring \
-  .
-
-# ビルド成功の確認
-docker images | grep go-devcontainer
-```
-
-**Podman使用の場合**:
-
-```bash
-# .devcontainerディレクトリに移動
-cd .devcontainer
-
-# イメージをビルド
+# イメージをビルド（Docker format指定）
 podman build \
+  --format docker \
   --tag ghcr.io/your-username/go-devcontainer:latest \
   --tag ghcr.io/your-username/go-devcontainer:2025spring \
-  --label "build-date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
-  --label "security-updated=yes" \
   .
 
 # ビルド成功の確認
 podman images | grep go-devcontainer
 ```
 
-**ビルド時間**: 約5分
+**ビルド時間**: 約3-5分（初回）、1-2分（2回目以降・キャッシュ利用）
 
 **重要**: `your-username` を実際のGitHubユーザー名に置き換えてください。
 
----
-
-### ステップ3: GitHub Container Registry にログイン（1分）
-
-#### Docker使用の場合:
-
-```bash
-# 環境変数にトークンを設定
-export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-# ログイン
-echo $GITHUB_TOKEN | docker login ghcr.io -u your-username --password-stdin
+**出力例**:
+```
+REPOSITORY                                    TAG         IMAGE ID      CREATED        SIZE
+ghcr.io/your-username/go-devcontainer        latest      abc123def456  2 minutes ago  850MB
+ghcr.io/your-username/go-devcontainer        2025spring  abc123def456  2 minutes ago  850MB
 ```
 
-#### Podman使用の場合:
+---
+
+### ステップ4: GitHub Container Registry にログイン（1分）
 
 ```bash
 # 環境変数にトークンを設定
@@ -127,21 +131,19 @@ echo $GITHUB_TOKEN | podman login ghcr.io -u your-username --password-stdin
 
 **ログイン成功**: `Login Succeeded!` と表示される
 
----
-
-### ステップ4: イメージをプッシュ（5分）
-
-#### Docker使用の場合:
-
+**トラブルシューティング**:
 ```bash
-# latestタグをプッシュ
-docker push ghcr.io/your-username/go-devcontainer:latest
+# ログイン状態を確認
+podman login --get-login ghcr.io
 
-# 学期タグもプッシュ
-docker push ghcr.io/your-username/go-devcontainer:2025spring
+# 再ログインが必要な場合
+podman logout ghcr.io
+echo $GITHUB_TOKEN | podman login ghcr.io -u your-username --password-stdin
 ```
 
-#### Podman使用の場合:
+---
+
+### ステップ5: イメージをプッシュ（5分）
 
 ```bash
 # latestタグをプッシュ
@@ -151,26 +153,27 @@ podman push ghcr.io/your-username/go-devcontainer:latest
 podman push ghcr.io/your-username/go-devcontainer:2025spring
 ```
 
-**プッシュ時間**: 約3-5分
+**プッシュ時間**: 約3-5分（初回）、1-2分（2回目以降・差分のみ）
 
 **進捗表示例**:
 ```
-Pushing layer sha256:abc123...
-Pushing layer sha256:def456...
-...
-Successfully pushed
+Copying blob sha256:abc123...
+Copying blob sha256:def456...
+Copying config sha256:789...
+Writing manifest to image destination
+Storing signatures
 ```
 
 ---
 
-### ステップ5: パッケージを公開設定（2分）
+### ステップ6: パッケージを公開設定（2分）
 
-#### 5-1. GitHubでパッケージを確認
+#### 6-1. GitHubでパッケージを確認
 
 1. GitHubプロフィール → 「**Packages**」タブ
 2. 「**go-devcontainer**」パッケージが表示される
 
-#### 5-2. 公開設定
+#### 6-2. 公開設定
 
 1. パッケージをクリック
 2. 右側の「**Package settings**」
@@ -180,7 +183,7 @@ Successfully pushed
 6. パッケージ名 `go-devcontainer` を入力
 7. 「**I understand, change package visibility**」をクリック
 
-#### 5-3. リポジトリと連携（推奨）
+#### 6-3. リポジトリと連携（推奨）
 
 1. Package settings で「**Connect repository**」
 2. テンプレートリポジトリを選択
@@ -188,9 +191,9 @@ Successfully pushed
 
 ---
 
-### ステップ6: devcontainer.json を更新（1分）
+### ステップ7: devcontainer.json を更新（1分）
 
-#### 6-1. イメージ参照に変更
+#### 7-1. イメージ参照に変更
 
 `.devcontainer/devcontainer.json` の先頭部分を更新:
 
@@ -226,7 +229,7 @@ Successfully pushed
 
 **重要**: `your-username` を実際のGitHubユーザー名に置き換えてください。
 
-#### 6-2. コミット・プッシュ
+#### 7-2. コミット・プッシュ
 
 ```bash
 git add .devcontainer/devcontainer.json
@@ -250,11 +253,24 @@ git push origin main
 Codespaces内のターミナルで:
 
 ```bash
+# Go環境の確認
 go version
+go env GOPATH
+go env GOROOT
+
+# 開発ツールの確認
 gopls version
 golangci-lint version
+goimports -h
 dlv version
-air -v
+
+# ディレクトリの権限確認
+ls -la /go
+ls -la /workspaces
+
+# 期待される出力:
+# drwxr-xr-x  5 vscode vscode  4096 ... /go
+# drwxr-xr-x  3 vscode vscode  4096 ... /workspaces
 ```
 
 すべて正常に表示されれば完了です。
@@ -274,12 +290,17 @@ air -v
 2. **再ビルド**
    ```bash
    cd .devcontainer
-   docker build --tag ghcr.io/your-username/go-devcontainer:latest .
+   
+   # Docker formatでビルド（重要）
+   podman build \
+     --format docker \
+     --tag ghcr.io/your-username/go-devcontainer:latest \
+     .
    ```
 
 3. **再プッシュ**
    ```bash
-   docker push ghcr.io/your-username/go-devcontainer:latest
+   podman push ghcr.io/your-username/go-devcontainer:latest
    ```
 
 4. **学生に通知**
@@ -298,9 +319,11 @@ air -v
 ### 学期初めの作業（1回のみ）
 
 - [ ] Personal Access Token作成
-- [ ] ローカルでイメージをビルド（5分）
+- [ ] Podman環境確認（バージョン確認）
+- [ ] 環境変数設定（BUILDAH_FORMAT=docker）
+- [ ] ローカルでイメージをビルド（3-5分）
 - [ ] GitHub Container Registryにログイン
-- [ ] イメージをプッシュ（5分）
+- [ ] イメージをプッシュ（3-5分）
 - [ ] パッケージを公開設定
 - [ ] リポジトリと連携
 - [ ] devcontainer.jsonをimage参照に変更
@@ -319,7 +342,7 @@ air -v
 
 ```bash
 # エラーメッセージを確認
-docker build --tag test .
+podman build --format docker --tag test .
 
 # よくある原因:
 # - Go版の指定ミス
@@ -333,11 +356,11 @@ docker build --tag test .
 
 ```bash
 # 再ログイン
-docker logout ghcr.io
-echo $GITHUB_TOKEN | docker login ghcr.io -u your-username --password-stdin
+podman logout ghcr.io
+echo $GITHUB_TOKEN | podman login ghcr.io -u your-username --password-stdin
 
 # 再プッシュ
-docker push ghcr.io/your-username/go-devcontainer:latest
+podman push ghcr.io/your-username/go-devcontainer:latest
 ```
 
 ### Q3: 学生がイメージをプルできない
@@ -358,6 +381,37 @@ Codespace内で:
 Ctrl+Shift+P → "Codespaces: Rebuild Container"
 ```
 
+### Q5: "HEALTHCHECK is not supported for OCI image format" 警告が出る
+
+**A**: Docker formatを指定していることを確認
+
+```bash
+# 環境変数が設定されているか確認
+echo $BUILDAH_FORMAT
+# 出力: docker
+
+# 設定されていない場合
+export BUILDAH_FORMAT=docker
+
+# または明示的に指定
+podman build --format docker -t myimage .
+```
+
+### Q6: キャッシュが効かない・ビルドが遅い
+
+**A**: キャッシュマウントの確認
+
+```bash
+# Buildahのバージョン確認（1.24以降推奨）
+buildah --version
+
+# キャッシュの状態確認
+podman system df
+
+# 古いキャッシュをクリーンアップ
+podman system prune -a
+```
+
 ---
 
 ## 💡 タグ戦略（推奨）
@@ -366,60 +420,30 @@ Ctrl+Shift+P → "Codespaces: Rebuild Container"
 
 ```bash
 # ビルド時に複数のタグを付ける
-docker build \
+podman build \
+  --format docker \
   --tag ghcr.io/your-username/go-devcontainer:latest \
   --tag ghcr.io/your-username/go-devcontainer:2025spring \
   --tag ghcr.io/your-username/go-devcontainer:go1.23 \
   .
 
 # すべてプッシュ
-docker push ghcr.io/your-username/go-devcontainer:latest
-docker push ghcr.io/your-username/go-devcontainer:2025spring
-docker push ghcr.io/your-username/go-devcontainer:go1.23
+podman push ghcr.io/your-username/go-devcontainer:latest
+podman push ghcr.io/your-username/go-devcontainer:2025spring
+podman push ghcr.io/your-username/go-devcontainer:go1.23
 ```
 
 ### タグの使い分け
 
-| タグ | 推奨度 | 理由 |
-|------|--------|------|
-| `2025spring` | ⭐⭐⭐ 最推奨 | 学期中は不変 |
-| `go1.23` | ⭐⭐ 推奨 | Go版明示 |
-| `latest` | ⚠️ 非推奨 | 予期しない更新 |
+| タグ | 用途 | 推奨 |
+|------|------|------|
+| `latest` | 常に最新版 | ✅ 推奨 |
+| `2025spring` | 学期固定版 | ⭐ 推奨（ロールバック用） |
+| `go1.23` | Go版固定 | オプション |
 
-**devcontainer.jsonでは `2025spring` 等を使用**
+**devcontainer.jsonでは `latest` を使用**
 
 ---
-## 🔒 セキュリティ運用方針
-
-### 通常時（推奨）
-```
-【学期初め】
-1. Dockerfileをビルド
-2. 最新のセキュリティパッチが自動適用
-3. 学期タグでプッシュ（例: 2025spring）
-4. devcontainer.jsonで学期タグを指定
-
-【学期中】
-- 同じイメージを使用
-- 再ビルド不要
-- 安定した環境を維持
-```
-
-### 緊急時（重大な脆弱性発見時のみ）
-```
-【対応手順】
-1. 脆弱性情報の確認
-2. 緊急再ビルド
-3. パッチタグでプッシュ（例: 2025spring-patch1）
-4. 学生に通知・更新指示
-
-【学生への通知例】
-「重要なセキュリティパッチのため、
-環境を更新してください。
-1. devcontainer.jsonのimageを
-   2025spring-patch1 に変更
-2. Ctrl+Shift+P → Rebuild Container
-```
 
 ## 📊 この方法の利点まとめ
 
@@ -436,6 +460,7 @@ docker push ghcr.io/your-username/go-devcontainer:go1.23
 - ✅ GitHub Actions不要
 - ✅ イメージを完全にコントロール
 - ✅ 学期中のメンテナンスほぼゼロ
+- ✅ Podmanのrootless実行でセキュリティ向上
 
 ### システム全体
 
@@ -443,6 +468,32 @@ docker push ghcr.io/your-username/go-devcontainer:go1.23
 - ✅ 信頼性が高い
 - ✅ トラブルが少ない
 - ✅ コスト: ほぼ無料
+
+---
+
+## 🔒 Podmanのセキュリティ利点
+
+### Rootless実行
+
+```bash
+# Podmanはデフォルトでrootless実行
+podman info | grep rootless
+
+# 出力:
+#   runRoot: /run/user/1000/containers
+#   rootless: true
+```
+
+**利点**:
+- ルート権限不要
+- セキュリティリスク低減
+- ホストシステムへの影響最小化
+
+### デーモンレス
+
+- Dockerデーモン不要
+- プロセスが直接起動
+- リソース効率が良い
 
 ---
 
@@ -459,14 +510,31 @@ docker push ghcr.io/your-username/go-devcontainer:go1.23
 
 ### 次のステップ
 
-1. Personal Access Token作成
-2. ローカルでイメージをビルド（5分）
-3. GitHub Container Registryにプッシュ（5分）
-4. パッケージを公開設定
-5. devcontainer.jsonを更新
-6. 動作確認
+1. Podman環境確認とBUILDAH_FORMAT設定
+2. Personal Access Token作成
+3. ローカルでイメージをビルド（3-5分）
+4. GitHub Container Registryにプッシュ（3-5分）
+5. パッケージを公開設定
+6. devcontainer.jsonを更新
+7. 動作確認
 
 **この手順で、高速起動かつメンテナンスフリーの環境が実現します！** 🚀
 
+---
 
+## 📚 参考情報
 
+### Podman公式ドキュメント
+
+- [Podman Documentation](https://docs.podman.io/)
+- [Buildah Image Formats](https://buildah.io/)
+- [Container Registries](https://docs.podman.io/en/latest/markdown/podman-login.1.html)
+
+### GitHub関連
+
+- [GitHub Packages Documentation](https://docs.github.com/en/packages)
+- [GitHub Codespaces](https://docs.github.com/en/codespaces)
+
+---
+
+**Podmanの利点を活かした、セキュアで効率的な開発環境をお楽しみください！** 🔒🚀
