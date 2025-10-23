@@ -13,9 +13,8 @@ ENV GO_VERSION=1.25.3 \
     DEBIAN_FRONTEND=noninteractive
 
 # システムパッケージの更新とインストール
-RUN --mount=type=cache,target=/var/cache/apt \
-    --mount=type=cache,target=/var/lib/apt \
-    apt-get update && \
+#RUN --mount=type=cache,target=/var/cache/apt \
+RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get dist-upgrade -y && \
     apt-get install -y --no-install-recommends \
