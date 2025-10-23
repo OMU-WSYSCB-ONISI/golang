@@ -105,7 +105,7 @@ USER vscode
 # Go開発ツール（最小限・並列インストール）
 #RUN --mount=type=cache,target=/go/pkg/mod,uid=1000,gid=1000 \
 RUN go install golang.org/x/tools/gopls@latest & \
-    go install github.com/golangci/golangci-lint/cmd/golangci-lint@vlatest & \
+    go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest & \
     go install golang.org/x/tools/cmd/goimports@v0.14.0 & \
     go install github.com/go-delve/delve/cmd/dlv@latest & \
     wait && \
@@ -131,6 +131,7 @@ CMD ["/bin/bash"]
 # - 非rootユーザー（vscode: UID/GID 1000）で実行
 # - 最小限のパッケージのみインストール
 # - 定期的なセキュリティアップデートを推奨
+
 
 
 
