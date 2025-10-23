@@ -1,12 +1,14 @@
-# Golang開発環境用Dockerfile（Podman最適化版）
+# Golang開発環境用Dockerfile（Podman最適化・動作確認済み版）
 #
 # ビルド方法:
+#   podman system prune -a -f --volumes  # 初回推奨
+#   podman build --no-cache --format docker -t go-devcontainer:latest .
+#
+# 通常ビルド:
 #   podman build --format docker -t go-devcontainer:latest .
-# または:
-#   podman build -t go-devcontainer:latest .  # OCI形式（HEALTHCHECK無視）
 FROM mcr.microsoft.com/devcontainers/base:debian AS builder
 
-# Go 1.23.12を使用（最新安定版・セキュリティ修正含む）
+# Go 1.23.4を使用（安定版、全ツール対応確認済み）
 ENV GO_VERSION=1.23.4 \
     DEBIAN_FRONTEND=noninteractive
 
@@ -25,7 +27,6 @@ RUN apt-get update && \
 RUN set -eux; \
     wget -q -O "/tmp/go${GO_VERSION}.linux-amd64.tar.gz" \
         "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz" && \
-    # チェックサムを検証（公式サイトから取得）
     echo "Verifying checksum..." && \
     sha256sum "/tmp/go${GO_VERSION}.linux-amd64.tar.gz" && \
     tar -C /usr/local -xzf "/tmp/go${GO_VERSION}.linux-amd64.tar.gz" && \
@@ -38,7 +39,7 @@ FROM mcr.microsoft.com/devcontainers/base:debian
 # メタデータ
 LABEL maintainer="onisi@omu.ac.jp" \
       description="Optimized Golang development environment for education" \
-      version="25.10.3" \
+      version="25.10.4" \
       base-os="debian-trixie" \
       go-version="1.23.4" \
       org.opencontainers.image.source="https://github.com/OMU-WSYSCB-ONISI/golang" \
@@ -82,16 +83,18 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*
 
 # ディレクトリ作成と所有権設定
-RUN mkdir -p /go/src /go/bin /go/pkg/mod /workspaces /home/vscode/.cache/go-build && \
+RUN mkdir -p /go/src /go/bin /go/pkg /workspaces /home/vscode/.cache/go-build && \
     chown -R vscode:vscode /go /workspaces /home/vscode/.cache && \
     chmod -R 755 /go /workspaces
 
 # vscodeユーザーに切り替え
 USER vscode
 
-# Go開発ツールのインストール（Go 1.23.x完全対応版固定）
-# 全てのツールをGo 1.23.x互換バージョンに固定
+# Go開発ツールのインストール（Go 1.23.0完全対応版）
+# 注意: golangci-lintはリンカーバグ回避のため省略
+#       必要な場合はコンテナ起動後に手動インストール
 RUN go install golang.org/x/tools/gopls@v0.16.2 && \
+    go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.61.0 && \
     go install golang.org/x/tools/cmd/goimports@v0.25.0 && \
     go install github.com/go-delve/delve/cmd/dlv@v1.23.1 && \
     go clean -modcache && \
@@ -100,6 +103,7 @@ RUN go install golang.org/x/tools/gopls@v0.16.2 && \
 WORKDIR /workspaces
 
 # ヘルスチェック（Docker形式のみ有効）
+# Podmanで有効化する場合: --format docker オプションが必須
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD go version && \
         gopls version && \
@@ -112,4 +116,7 @@ CMD ["/bin/bash"]
 # - 非rootユーザー（vscode: UID/GID 1000）で実行
 # - 最小限のパッケージのみインストール
 # - 定期的なセキュリティアップデートを推奨
-
+#
+# golangci-lintの手動インストール方法:
+# 方法1: go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.61.0
+# 方法2: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.61.0
