@@ -7,7 +7,7 @@
 FROM mcr.microsoft.com/devcontainers/base:debian AS builder
 
 # Go 1.23.12を使用（最新安定版・セキュリティ修正含む）
-ENV GO_VERSION=1.23.12 \
+ENV GO_VERSION=1.23.4 \
     DEBIAN_FRONTEND=noninteractive
 
 # システムパッケージの更新とインストール
@@ -40,11 +40,11 @@ LABEL maintainer="onisi@omu.ac.jp" \
       description="Optimized Golang development environment for education" \
       version="25.10.3" \
       base-os="debian-trixie" \
-      go-version="1.23.12" \
+      go-version="1.23.4" \
       org.opencontainers.image.source="https://github.com/OMU-WSYSCB-ONISI/golang" \
       org.opencontainers.image.licenses="MIT"
 
-ARG GO_VERSION=1.23.12
+ARG GO_VERSION=1.23.4
 ARG TARGETARCH=amd64
 
 # 環境変数（自動ツールチェーン切替を無効化）
@@ -82,7 +82,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*
 
 # ディレクトリ作成と所有権設定
-RUN mkdir -p /go/src /go/bin /go/pkg /workspaces /home/vscode/.cache/go-build && \
+RUN mkdir -p /go/src /go/bin /go/pkg/mod /workspaces /home/vscode/.cache/go-build && \
     chown -R vscode:vscode /go /workspaces /home/vscode/.cache && \
     chmod -R 755 /go /workspaces
 
@@ -112,3 +112,4 @@ CMD ["/bin/bash"]
 # - 非rootユーザー（vscode: UID/GID 1000）で実行
 # - 最小限のパッケージのみインストール
 # - 定期的なセキュリティアップデートを推奨
+
