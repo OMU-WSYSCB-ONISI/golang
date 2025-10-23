@@ -1,5 +1,11 @@
-# Golang開発環境用Dockerfile（修正版）
-# マルチステージビルドでイメージサイズを削減
+# Golang開発環境用Dockerfile（最適化版・Podman対応）
+# BuildKit/Buildah機能を活用した高速ビルド
+#
+# Podmanでビルドする場合:
+#   podman build --format docker -t go-devcontainer:latest .
+# または環境変数を設定:
+#   export BUILDAH_FORMAT=docker
+#   podman build -t go-devcontainer:latest .
 FROM mcr.microsoft.com/devcontainers/base:debian AS builder
 
 # 環境変数の設定
@@ -7,7 +13,9 @@ ENV GO_VERSION=1.25.3 \
     DEBIAN_FRONTEND=noninteractive
 
 # システムパッケージの更新とインストール
-RUN apt-get update && \
+RUN --mount=type=cache,target=/var/cache/apt \
+    --mount=type=cache,target=/var/lib/apt \
+    apt-get update && \
     apt-get upgrade -y && \
     apt-get dist-upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -18,20 +26,30 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Goのインストール
-RUN wget -q -O go.tar.gz https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
-    tar -C /usr/local -xzf go.tar.gz && \
-    rm go.tar.gz
+# Goのダウンロードとインストール（キャッシュ活用）
+RUN --mount=type=cache,target=/tmp/go-cache \
+    cd /tmp/go-cache && \
+    if [ ! -f "go${GO_VERSION}.linux-amd64.tar.gz" ]; then \
+        wget -q -O "go${GO_VERSION}.linux-amd64.tar.gz" \
+            "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz"; \
+    fi && \
+    tar -C /usr/local -xzf "go${GO_VERSION}.linux-amd64.tar.gz"
 
 # 最終ステージ
 FROM mcr.microsoft.com/devcontainers/base:debian
 
 # メタデータ
 LABEL maintainer="onisi@omu.ac.jp"
-LABEL description="Optimized Golang development environment"
-LABEL version="25.10.1"
-LABEL base-os="debian-bookworm"
-LABEL build-date=""
+　　　 description="Optimized Golang development environment for education" \
+      version="25.10.1" \
+      base-os="debian-bookworm" \
+      build-date="" \
+      org.opencontainers.image.source="https://github.com/OMU-WSYSCB-ONISI/golang" \
+      org.opencontainers.image.licenses="MIT"　
+
+# ARG for build-time configuration
+ARG GO_VERSION=1.25.3
+ARG TARGETARCH=amd64
 
 # 環境変数
 ENV GOPATH=/go \
@@ -45,8 +63,10 @@ ENV GOPATH=/go \
 # Goをコピー
 COPY --from=builder /usr/local/go /usr/local/go
 
-# 最小限のパッケージのみインストール
-RUN apt-get update && \
+# システムパッケージのインストールとクリーンアップ（1レイヤー）
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
         # 必須パッケージ
         sudo git make gcc ca-certificates \
@@ -83,7 +103,8 @@ RUN mkdir -p /workspaces && \
 USER vscode
 
 # Go開発ツール（最小限・並列インストール）
-RUN go install golang.org/x/tools/gopls@latest & \
+RUN --mount=type=cache,target=/go/pkg/mod,uid=1000,gid=1000 \
+    go install golang.org/x/tools/gopls@latest & \
     go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.62.2 & \
     go install golang.org/x/tools/cmd/goimports@v0.14.0 & \
     go install github.com/go-delve/delve/cmd/dlv@latest & \
@@ -94,6 +115,9 @@ RUN go install golang.org/x/tools/gopls@latest & \
 WORKDIR /workspaces
 
 # ヘルスチェック（改善版）
+# 注意: Podmanでビルドする場合は --format docker オプションが必要
+# HEALTHCHECKはDocker image formatでのみサポートされます
+# 例: podman build --format docker -t myimage .
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD go version && \
         gopls version && \
@@ -102,6 +126,11 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 # デフォルトコマンド
 CMD ["/bin/bash"]
+
+# セキュリティ情報（コメント）
+# - 非rootユーザー（vscode: UID/GID 1000）で実行
+# - 最小限のパッケージのみインストール
+# - 定期的なセキュリティアップデートを推奨
 
 
 
