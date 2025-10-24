@@ -8,8 +8,8 @@
 #   podman build --format docker -t go-devcontainer:latest .
 FROM mcr.microsoft.com/devcontainers/base:debian AS builder
 
-# Go 1.23.4を使用（安定版、全ツール対応確認済み）
-ENV GO_VERSION=1.23.4 \
+# Go 1.23.9を使用（安定版、全ツール対応確認済み）
+ENV GO_VERSION=1.23.9 \
     DEBIAN_FRONTEND=noninteractive
 
 # システムパッケージの更新とインストール
@@ -41,11 +41,11 @@ LABEL maintainer="onisi@omu.ac.jp" \
       description="Optimized Golang development environment for education" \
       version="25.10.4" \
       base-os="debian-trixie" \
-      go-version="1.23.4" \
+      go-version="1.23.9" \
       org.opencontainers.image.source="https://github.com/OMU-WSYSCB-ONISI/golang" \
       org.opencontainers.image.licenses="MIT"
 
-ARG GO_VERSION=1.23.4
+ARG GO_VERSION=1.23.9
 ARG TARGETARCH=amd64
 
 # 環境変数（自動ツールチェーン切替を無効化）
@@ -90,9 +90,7 @@ RUN mkdir -p /go/src /go/bin /go/pkg /workspaces /home/vscode/.cache/go-build &&
 # vscodeユーザーに切り替え
 USER vscode
 
-# Go開発ツールのインストール（Go 1.23.0完全対応版）
-# 注意: golangci-lintはリンカーバグ回避のため省略
-#       必要な場合はコンテナ起動後に手動インストール
+# Go開発ツールのインストール（Go 1.23.x完全対応版）
 RUN go install golang.org/x/tools/gopls@v0.16.2 && \
     go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.61.0 && \
     go install golang.org/x/tools/cmd/goimports@v0.25.0 && \
@@ -120,3 +118,4 @@ CMD ["/bin/bash"]
 # golangci-lintの手動インストール方法:
 # 方法1: go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.61.0
 # 方法2: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.61.0
+
