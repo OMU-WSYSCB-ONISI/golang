@@ -34,8 +34,8 @@
       "presentation": {
         "echo": true,
         "reveal": "always",
-        "focus": true,
-        "panel": "dedicated"
+        "focus": false,        // 変更: エディタにフォーカスを維持
+        "panel": "shared"      // 変更: 共有パネルを使用
       },
       "problemMatcher": "$go"
     },
