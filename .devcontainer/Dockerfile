@@ -83,7 +83,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*
 
 # ディレクトリ作成と所有権設定
-RUN mkdir -p /go/src /go/bin /go/pkg /workspaces /home/vscode/.cache/go-build && \
+RUN mkdir -p /go/src /go/bin /go/pkg/mod /workspaces /home/vscode/.cache/go-build && \
     chown -R vscode:vscode /go /workspaces /home/vscode/.cache && \
     chmod -R 755 /go /workspaces
 
@@ -118,4 +118,5 @@ CMD ["/bin/bash"]
 # golangci-lintの手動インストール方法:
 # 方法1: go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.61.0
 # 方法2: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.61.0
+
 
