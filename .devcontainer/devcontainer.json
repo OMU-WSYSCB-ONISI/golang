@@ -171,7 +171,11 @@
         "files.trimTrailingWhitespace": true,
         "files.insertFinalNewline": true,
         "files.encoding": "utf8",
-        
+        "files.exclude": {
+          "**/.*": true,
+          "**/.git": false,
+          "**/.gitignore": false
+        }, 
         // ===== Go固有の設定 =====
         "[go]": {
           "editor.defaultFormatter": "golang.go",
@@ -445,6 +449,7 @@
     "storage": "32gb"
   }
 }
+
 
 
 
