@@ -755,6 +755,19 @@ go mod tidy
 ```
 
 ---
+## ブラウザでの確認方法
+
+### 方法1: エディタ内プレビュー（推奨）
+サーバー起動後、自動的にエディタ内に表示されます
+
+### 方法2: 外部ブラウザ
+1. VS Code下部の「ポート」タブを開く
+2. `8080` の行の地球儀アイコンをクリック
+
+### 方法3: Simple Browser（シンプル表示）
+1. `Ctrl+Shift+P` でコマンドパレットを開く
+2. "Simple Browser: Show" を選択
+3. `http://localhost:8080` を入力---
 
 ## サポート情報
 
@@ -783,3 +796,4 @@ go mod tidy
 ### 教員・TA向けドキュメント
 - **[TEACHER_REVIEW_GUIDE.md](TEACHER_REVIEW_GUIDE.md)** - 課題確認・評価ガイド
 - **[CONTAINER_SETUP_MANUAL.md](CONTAINER_SETUP_MANUAL.md)** - コンテナイメージ構築ガイド（Podman版）
+
