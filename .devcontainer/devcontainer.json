@@ -285,18 +285,18 @@
         "workbench.iconTheme": "material-icon-theme",
         
         // Markdown設定
+        // Markdownプレビュー設定
         "markdown.preview.fontSize": 14,
         "markdown.preview.lineHeight": 1.6,
-        // Markdownプレビュー設定
-"markdown.preview.openMarkdownLinks": "inPreview",
-"markdown.preview.scrollPreviewWithEditor": true,
-"markdown.preview.scrollEditorWithPreview": true,
-"markdown.preview.doubleClickToSwitchToEditor": true,
-
-// ファイルの関連付け（クリックで常にプレビュー）
-"workbench.editorAssociations": {
-  "*.md": "vscode.markdown.preview.editor"
-},
+        "markdown.preview.openMarkdownLinks": "inPreview",
+        "markdown.preview.scrollPreviewWithEditor": true,
+        "markdown.preview.scrollEditorWithPreview": true,
+        "markdown.preview.doubleClickToSwitchToEditor": false,
+        
+        // ファイルの関連付け（クリックで常にプレビュー）
+        "workbench.editorAssociations": {
+          "*.md": "vscode.markdown.preview.editor"
+        },
         
         // ===== ターミナル設定 =====
         "terminal.integrated.defaultProfile.linux": "bash",
@@ -445,6 +445,7 @@
     "storage": "32gb"
   }
 }
+
 
 
 
