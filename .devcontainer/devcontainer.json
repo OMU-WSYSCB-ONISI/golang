@@ -421,11 +421,13 @@
   "portsAttributes": {
     "8080": {
       "label": "Application",
-      "onAutoForward": "notify",
+      "onAutoForward": "openPreview",
       "visibility": "public",
       "protocol": "http"
     }
   },
+  // Simple Browserも使えるようにしておく
+  "simpleBrowser.focusLockIndicator.enabled": true ,
   
   // マウント設定（パフォーマンス改善）
   "mounts": [
@@ -452,6 +454,7 @@
     "storage": "32gb"
   }
 }
+
 
 
 
