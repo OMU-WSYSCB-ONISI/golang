@@ -372,12 +372,12 @@
     }
   },
   
-  "onCreateCommand": "code --uninstall-extension GitHub.copilot 2>/dev/null; code --uninstall-extension GitHub.copilot-chat 2>/dev/null; code --uninstall-extension GitHub.copilot-labs 2>/dev/null; code --uninstall-extension GitHub.copilot-nightly 2>/dev/null; code --uninstall-extension VisualStudioExptTeam.vscodeintellicode 2>/dev/null; code --uninstall-extension VisualStudioExptTeam.intellicode-api-usage-examples 2>/dev/null; code --uninstall-extension TabNine.tabnine-vscode 2>/dev/null; code --uninstall-extension Codeium.codeium 2>/dev/null; code --uninstall-extension AmazonWebServices.aws-toolkit-vscode 2>/dev/null; go version && go env",
+  "onCreateCommand": "go version && go env",
   "updateContentCommand": "go mod download || echo 'No go.mod found'",
   "postCreateCommand": "echo 'Codespace created!'",
   "postStartCommand": "echo 'Codespace ready! Go version:' && go version",
-  // 🔴 修正: postAttachCommandを有効化してAI関連拡張機能をすべてアンインストール
-  "postAttachCommand": "code --uninstall-extension GitHub.copilot 2>/dev/null; code --uninstall-extension GitHub.copilot-chat 2>/dev/null; code --uninstall-extension GitHub.copilot-labs 2>/dev/null; code --uninstall-extension GitHub.copilot-nightly 2>/dev/null; code --uninstall-extension VisualStudioExptTeam.vscodeintellicode 2>/dev/null; code --uninstall-extension VisualStudioExptTeam.intellicode-api-usage-examples 2>/dev/null; code --uninstall-extension TabNine.tabnine-vscode 2>/dev/null; code --uninstall-extension Codeium.codeium 2>/dev/null; code --uninstall-extension AmazonWebServices.aws-toolkit-vscode 2>/dev/null; echo 'Connected to Codespace - AI extensions removed'",
+  // 🔴 修正: postAttachCommandを有効化してAI関連拡張機能を完全アンインストール
+  "postAttachCommand": "(code --uninstall-extension GitHub.copilot; code --uninstall-extension GitHub.copilot-chat; code --uninstall-extension GitHub.copilot-labs; code --uninstall-extension GitHub.copilot-nightly; code --uninstall-extension VisualStudioExptTeam.vscodeintellicode; code --uninstall-extension VisualStudioExptTeam.intellicode-api-usage-examples; code --uninstall-extension TabNine.tabnine-vscode; code --uninstall-extension Codeium.codeium; code --uninstall-extension AmazonWebServices.aws-toolkit-vscode) > /dev/null 2>&1; echo 'AI extensions removed. Codespace ready.'",
   
   "remoteUser": "vscode",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
