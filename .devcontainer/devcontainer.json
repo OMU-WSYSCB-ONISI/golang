@@ -376,6 +376,12 @@
   },
   
   "waitFor": "onCreateCommand",
+
+  "chat.agent.enabled": false,
+  "github.copilot.chat.agent.currentEditorContext.enabled": false,
+  "github.copilot.chat.reviewAgent.enabled": false,
+  "github.copilot.chat.executePrompt.enabled": false,
+  "github.copilot.chat.newWorkspaceCreation.enabled": false,
   
   "hostRequirements": {
     "cpus": 2,
@@ -383,5 +389,6 @@
     "storage": "32gb"
   }
 }
+
 
 
