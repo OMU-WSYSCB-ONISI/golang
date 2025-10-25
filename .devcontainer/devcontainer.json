@@ -439,7 +439,7 @@
   // ライフサイクルコマンド
   "onCreateCommand": "go version && go env",                    // コンテナ作成時（1回のみ）
   "updateContentCommand": "go mod download || echo 'No go.mod found'",  // Prebuild時・更新時
-  "postCreateCommand": "echo 'Codespace created!'",             // 作成完了後
+  "postCreateCommand": "echo 'Removing unwanted extensions...' && code --uninstall-extension github.copilot --uninstall-extension github.copilot-chat --uninstall-extension visualstudioexptteam.vscodeintellicode 2>/dev/null || echo 'Extensions already removed' && echo 'Codespace created!'", // 作成完了後
   "postStartCommand": "echo 'Codespace ready! Go version:' && go version",  // 起動時（毎回）
   "postAttachCommand": "echo 'Connected to Codespace'",         // 接続時
   
@@ -483,6 +483,7 @@
     "storage": "32gb"
   }
 }
+
 
 
 
