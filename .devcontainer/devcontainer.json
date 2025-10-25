@@ -431,8 +431,9 @@
   // リソース制限（オプション：大規模プロジェクト向け）
   "hostRequirements": {
     "cpus": 2,
-    "memory": "4gb",
+    "memory": "8gb",
     "storage": "32gb"
   }
 }
+
 
