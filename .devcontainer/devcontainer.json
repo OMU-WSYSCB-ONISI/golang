@@ -317,6 +317,9 @@
         "workbench.sideBar.location": "left",              // 追加：サイドバーは左側のみ
         "workbench.panel.defaultLocation": "bottom",       // 追加：パネルは下部に固定
         "workbench.startupEditor": "welcomePage",
+        "workbench.activityBar.visible": true,
+        "workbench.statusBar.visible": false,  // true から false に変更
+        "workbench.editor.showTabs": "multiple",
         
         // ===== 初心者向けUI簡素化設定 =====
         // 不要なUI要素を非表示
@@ -394,7 +397,7 @@
     
     // その他の不要な表示
     "workbench.editor.showTabs": "multiple",
-    "workbench.statusBar.visible": true,
+    "workbench.statusBar.visible": false,
     "telemetry.telemetryLevel": "off",
 
         // Simple Browserも使えるようにしておく
@@ -483,6 +486,7 @@
     "storage": "32gb"
   }
 }
+
 
 
 
