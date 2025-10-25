@@ -312,9 +312,10 @@
         // ===== ターミナル設定 =====
         "terminal.integrated.defaultProfile.linux": "bash",
         "terminal.integrated.fontSize": 14,
-        
         // ===== ワークベンチ設定 =====
-        "workbench.secondarySideBar.defaultVisibility": "hidden",
+        "workbench.secondarySideBar.visible": false,        // 追加：右パネルを非表示
+        "workbench.sideBar.location": "left",              // 追加：サイドバーは左側のみ
+        "workbench.panel.defaultLocation": "bottom",       // 追加：パネルは下部に固定
         "workbench.startupEditor": "welcomePage",
         
         // ===== 初心者向けUI簡素化設定 =====
@@ -482,6 +483,7 @@
     "storage": "32gb"
   }
 }
+
 
 
 
