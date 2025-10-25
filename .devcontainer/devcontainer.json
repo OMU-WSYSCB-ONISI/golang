@@ -141,14 +141,14 @@
         },
         
         // アクセシビリティ支援機能
-        "editor.accessibilitySupport": "on",            // スクリーンリーダー対応
+        "editor.accessibilitySupport": "off",            // スクリーンリーダー対応
         "accessibility.signals.lineHasError": {
           "sound": "off",
-          "announcement": "on"
+          "announcement": "off"
         },
         "accessibility.signals.lineHasWarning": {
           "sound": "off",
-          "announcement": "on"
+          "announcement": "off"
         },
         "accessibility.signals.lineHasBreakpoint": {
           "sound": "off"
@@ -379,7 +379,26 @@
         "explorer.compactFolders": false,               // ネストを明示的に表示
         "explorer.confirmDelete": true,                 // 削除確認は必須
         "explorer.confirmDragAndDrop": true,            // ドラッグ＆ドロップ確認
-        
+
+          // ステータスバーの簡素化
+    "problems.showCurrentInStatus": true,           // エラー数は表示（重要）
+    "git.decorations.enabled": false,               // Git装飾を非表示
+    "scm.showChangesSummary": false,                // SCM変更数を非表示
+    "remote.tunnels.access.showInStatusBar": false, // リモートトンネルを非表示
+    
+    // 通知の抑制
+    "extensions.ignoreRecommendations": true,
+    "update.showReleaseNotes": false,
+    "git.showPushSuccessNotification": false,
+    
+    // その他の不要な表示
+    "workbench.editor.showTabs": "multiple",
+    "workbench.statusBar.visible": true,
+    "telemetry.telemetryLevel": "off",
+
+        // Simple Browserも使えるようにしておく
+        //"simpleBrowser.focusLockIndicator.enabled": true ,
+
         // ===== パフォーマンス最適化（多人数利用時） =====
         "files.watcherExclude": {
           "**/.git/objects/**": true,
@@ -406,21 +425,6 @@
           "**/.DS_Store": true,
           "**/Thumbs.db": true
         },
-              // ステータスバーの簡素化
-    "problems.showCurrentInStatus": true,           // エラー数は表示（重要）
-    "git.decorations.enabled": false,               // Git装飾を非表示
-    "scm.showChangesSummary": false,                // SCM変更数を非表示
-    "remote.tunnels.access.showInStatusBar": false, // リモートトンネルを非表示
-    
-    // 通知の抑制
-    "extensions.ignoreRecommendations": true,
-    "update.showReleaseNotes": false,
-    "git.showPushSuccessNotification": false,
-    
-    // その他の不要な表示
-    "workbench.editor.showTabs": "multiple",
-    "workbench.statusBar.visible": true,
-    "telemetry.telemetryLevel": "off",
         
         // Git操作の最適化
         "git.autofetch": false,                         // 自動フェッチ無効（トラフィック削減）
@@ -478,6 +482,7 @@
     "storage": "32gb"
   }
 }
+
 
 
 
