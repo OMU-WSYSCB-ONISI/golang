@@ -136,15 +136,15 @@
         // アクセシビリティ支援機能
         "editor.accessibilitySupport": "on",            // スクリーンリーダー対応
         "accessibility.signals.lineHasError": {
-          "sound": "on",
+          "sound": "off",
           "announcement": "on"
         },
         "accessibility.signals.lineHasWarning": {
-          "sound": "on",
+          "sound": "off",
           "announcement": "on"
         },
         "accessibility.signals.lineHasBreakpoint": {
-          "sound": "on"
+          "sound": "off"
         },
         "editor.guides.bracketPairs": "active",         // ブラケットペアのガイド表示
         "editor.bracketPairColorization.enabled": true, // ブラケットの色分け
@@ -435,3 +435,4 @@
     "storage": "32gb"
   }
 }
+
