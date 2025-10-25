@@ -51,6 +51,10 @@
         },
         "github.copilot.editor.enableAutoCompletions": false,
         "github.copilot.editor.enableCodeActions": false,
+        // Copilotのステータスバー表示を完全に非表示
+        "github.copilot.advanced": {
+          "showStatusBarIcon": false                                 // ステータスバーアイコンを非表示
+        },
         
         // IntelliCode
         "vsintellicode.modify.editor.suggestSelection": "disabled",
@@ -148,6 +152,10 @@
         },
         "editor.guides.bracketPairs": "active",         // ブラケットペアのガイド表示
         "editor.bracketPairColorization.enabled": true, // ブラケットの色分け
+        "accessibility.verbosity.terminal": false,
+        "accessibility.verbosity.editor": false,
+        "accessibility.verbosity.notification": false,
+        "workbench.editor.accessibilityVerbosity": false,
         
         // 読みやすさの向上
         "editor.wordWrap": "on",                        // 折り返し有効（長い行を自動改行）
@@ -454,6 +462,7 @@
     "storage": "32gb"
   }
 }
+
 
 
 
