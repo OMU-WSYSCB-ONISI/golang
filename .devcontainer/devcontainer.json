@@ -40,6 +40,9 @@
       ],
       
       "settings": {
+        // Simple Browserも使えるようにしておく
+        "simpleBrowser.focusLockIndicator.enabled": true ,
+        
         // ===== AI補完機能の厳格な無効化（教育目的） =====
         // GitHub Copilot
         "github.copilot.enable": {
@@ -403,6 +406,21 @@
           "**/.DS_Store": true,
           "**/Thumbs.db": true
         },
+              // ステータスバーの簡素化
+    "problems.showCurrentInStatus": true,           // エラー数は表示（重要）
+    "git.decorations.enabled": false,               // Git装飾を非表示
+    "scm.showChangesSummary": false,                // SCM変更数を非表示
+    "remote.tunnels.access.showInStatusBar": false, // リモートトンネルを非表示
+    
+    // 通知の抑制
+    "extensions.ignoreRecommendations": true,
+    "update.showReleaseNotes": false,
+    "git.showPushSuccessNotification": false,
+    
+    // その他の不要な表示
+    "workbench.editor.showTabs": "multiple",
+    "workbench.statusBar.visible": true,
+    "telemetry.telemetryLevel": "off",
         
         // Git操作の最適化
         "git.autofetch": false,                         // 自動フェッチ無効（トラフィック削減）
@@ -434,8 +452,6 @@
       "protocol": "http"
     }
   },
-  // Simple Browserも使えるようにしておく
-  "simpleBrowser.focusLockIndicator.enabled": true ,
   
   // マウント設定（パフォーマンス改善）
   "mounts": [
@@ -454,22 +470,6 @@
   
   // 起動最適化
   "waitFor": "onCreateCommand",  // onCreateCommandの完了を待つ（高速化）
-
-      // ステータスバーの簡素化
-    "problems.showCurrentInStatus": true,           // エラー数は表示（重要）
-    "git.decorations.enabled": false,               // Git装飾を非表示
-    "scm.showChangesSummary": false,                // SCM変更数を非表示
-    "remote.tunnels.access.showInStatusBar": false, // リモートトンネルを非表示
-    
-    // 通知の抑制
-    "extensions.ignoreRecommendations": true,
-    "update.showReleaseNotes": false,
-    "git.showPushSuccessNotification": false,
-    
-    // その他の不要な表示
-    "workbench.editor.showTabs": "multiple",
-    "workbench.statusBar.visible": true,
-    "telemetry.telemetryLevel": "off",
   
   // リソース制限（オプション：大規模プロジェクト向け）
   "hostRequirements": {
@@ -478,6 +478,7 @@
     "storage": "32gb"
   }
 }
+
 
 
 
