@@ -32,6 +32,7 @@
         },
         "github.copilot.editor.enableAutoCompletions": false,
         "github.copilot.editor.enableCodeActions": false,
+        "github.copilot.chat.agent.enabled": false,
         "vsintellicode.modify.editor.suggestSelection": "disabled",
         "vsintellicode.features.python.deepLearning": "disabled",
         "tabnine.experimentalAutoImports": false,
@@ -382,4 +383,5 @@
     "storage": "32gb"
   }
 }
+
 
