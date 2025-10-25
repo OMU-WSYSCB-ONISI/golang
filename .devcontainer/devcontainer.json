@@ -142,7 +142,7 @@
         "workbench.sideBar.location": "left",
         "workbench.panel.defaultLocation": "bottom",
         "workbench.activityBar.visible": true,
-        "workbench.statusBar.visible": true,
+        "workbench.statusBar.visible": false,
         "workbench.editor.showTabs": "multiple",
         "workbench.editor.enablePreview": false,
         "workbench.editor.enablePreviewFromQuickOpen": false,
@@ -346,7 +346,7 @@
   "updateContentCommand": "go mod download || echo 'No go.mod found'",
   "postCreateCommand": "echo 'Codespace created!'",
   "postStartCommand": "echo 'Codespace ready! Go version:' && go version",
-  "postAttachCommand": "sleep 1 && code --command 'workbench.action.closeAuxiliaryBar' 2>/dev/null || echo 'Connected to Codespace'",
+  //"postAttachCommand": "sleep 1 && code --command 'workbench.action.closeAuxiliaryBar' 2>/dev/null || echo 'Connected to Codespace'",
   
   "remoteUser": "vscode",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -382,3 +382,4 @@
     "storage": "32gb"
   }
 }
+
