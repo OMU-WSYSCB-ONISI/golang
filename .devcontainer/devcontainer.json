@@ -1,50 +1,28 @@
 {
   "name": "Golang Development Environment (Debian)",
   
-  // 事前ビルドイメージを使用
   "image": "ghcr.io/onisi/omu-sss-websys:2025autumn",
   
-  // VS Code設定
   "customizations": {
     "vscode": {
       "extensions": [
-        // === Go開発（最優先） ===
         "golang.Go",
-        
-        // === 初心者支援（視覚化・理解）===
-        "oderwat.indent-rainbow",              // インデントの可視化
-        "mosapride.zenkaku",                   // 全角スペース検出（軽量）
-        "shardulm94.trailing-spaces",          // 末尾スペース可視化（軽量）
-        "usernamehw.errorlens",                // エラーをインラインで表示
-        
-        // === コード品質・学習支援 ===
-        "formulahendry.code-runner",           // コード実行
-        "aaron-bond.better-comments",          // コメントの色分け（軽量）
-        "wayou.vscode-todo-highlight",         // TODO/FIXMEハイライト（軽量）
-        
-        // === Git学習 ===
-        "mhutchie.git-graph",                  // Gitグラフ表示（GitLensより軽量）
-        
-        // === UI改善 ===
-        "PKief.material-icon-theme",           // ファイルアイコン
-        
-        // === 日本語対応 ===
-        "ms-ceintl.vscode-language-pack-ja",   // 日本語化
-        
-        // === ドキュメント（オプション - 必要に応じて） ===
-        "yzhang.markdown-all-in-one",          // Markdown支援
-        "bierner.markdown-preview-github-styling" // GitHubスタイルプレビュー
-        
-        // 注: GitLensを削除（重い・初心者には高機能すぎる）
-        // 注: Code Spell Checkerを削除（辞書読み込みが重い）
+        "oderwat.indent-rainbow",
+        "mosapride.zenkaku",
+        "shardulm94.trailing-spaces",
+        "usernamehw.errorlens",
+        "formulahendry.code-runner",
+        "aaron-bond.better-comments",
+        "wayou.vscode-todo-highlight",
+        "mhutchie.git-graph",
+        "PKief.material-icon-theme",
+        "ms-ceintl.vscode-language-pack-ja",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-preview-github-styling"
       ],
       
       "settings": {
-        // Simple Browserも使えるようにしておく
-        "simpleBrowser.focusLockIndicator.enabled": true ,
-        
-        // ===== AI補完機能の厳格な無効化（教育目的） =====
-        // GitHub Copilot
+        // ===== AI補完機能の厳格な無効化 =====
         "github.copilot.enable": {
           "*": false,
           "plaintext": false,
@@ -54,29 +32,15 @@
         },
         "github.copilot.editor.enableAutoCompletions": false,
         "github.copilot.editor.enableCodeActions": false,
-        // Copilotのステータスバー表示を完全に非表示
-        "github.copilot.advanced": {
-          "showStatusBarIcon": false                                 // ステータスバーアイコンを非表示
-        },
-        
-        // IntelliCode
         "vsintellicode.modify.editor.suggestSelection": "disabled",
         "vsintellicode.features.python.deepLearning": "disabled",
-        
-        // Tabnine
         "tabnine.experimentalAutoImports": false,
         "tabnine.disableLineRegex": [".*"],
-        
-        // Codeium
         "codeium.enableCodeLens": false,
         "codeium.enableConfig": {
           "*": false
         },
-        
-        // AWS CodeWhisperer
         "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
-        
-        // その他のAI補完機能
         "editor.inlineSuggest.enabled": false,
         "editor.suggestSelection": "first",
         "editor.quickSuggestions": {
@@ -92,8 +56,6 @@
         "go.formatTool": "goimports",
         "go.buildOnSave": "off",
         "go.vetOnSave": "off",
-        
-        // Goデバッグ設定（初心者向け）
         "go.delveConfig": {
           "dlvLoadConfig": {
             "followPointers": true,
@@ -105,29 +67,170 @@
           "showGlobalVariables": false
         },
         "go.toolsManagement.autoUpdate": false,
+        "[go]": {
+          "editor.defaultFormatter": "golang.go",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
         
         // ===== エディター基本設定 =====
         "editor.tabSize": 4,
         "editor.insertSpaces": false,
         "editor.detectIndentation": false,
-        
-        // ===== アクセシビリティ設定 =====
-        // フォントサイズ・可読性
         "editor.fontSize": 14,
         "editor.lineHeight": 1.6,
         "editor.fontFamily": "'Consolas', 'Courier New', monospace",
-        "editor.fontLigatures": false,                  // 合字を無効（読みやすさ優先）
+        "editor.fontLigatures": false,
         "editor.letterSpacing": 0,
-        
-        // カーソル・選択の視認性向上
         "editor.cursorBlinking": "smooth",
         "editor.cursorWidth": 3,
-        "editor.cursorStyle": "block",                  // ブロック型カーソル（視認性最高）
-        "editor.renderWhitespace": "boundary",          // 空白文字を適度に表示
-        "editor.renderControlCharacters": true,         // 制御文字を表示
+        "editor.cursorStyle": "block",
+        "editor.renderWhitespace": "boundary",
+        "editor.renderControlCharacters": true,
+        "editor.guides.bracketPairs": "active",
+        "editor.bracketPairColorization.enabled": true,
+        "editor.wordWrap": "on",
+        "editor.wrappingIndent": "indent",
+        "editor.wordWrapColumn": 120,
+        "editor.rulers": [80, 120],
+        "editor.smoothScrolling": true,
+        "editor.mouseWheelZoom": true,
+        "editor.minimap.enabled": false,
+        "editor.codeLens": false,
+        "editor.lightbulb.enabled": "off",
+        "editor.hover.delay": 500,
+        "editor.parameterHints.enabled": true,
+        "editor.renderLineHighlight": "line",
+        "editor.occurrencesHighlight": "off",
+        "editor.selectionHighlight": true,
+        "editor.folding": true,
+        "editor.foldingStrategy": "indentation",
+        "editor.showFoldingControls": "mouseover",
+        "editor.peekWidgetDefaultFocus": "editor",
         
-        // コントラスト・色設定
-        "workbench.colorTheme": "Default Dark Modern",  // 視認性の高いテーマ
+        // ===== アクセシビリティ設定（完全無効化） =====
+        "editor.accessibilitySupport": "off",
+        "accessibility.signals.lineHasError": {
+          "sound": "off",
+          "announcement": "off"
+        },
+        "accessibility.signals.lineHasWarning": {
+          "sound": "off",
+          "announcement": "off"
+        },
+        "accessibility.signals.lineHasBreakpoint": {
+          "sound": "off"
+        },
+        "accessibility.signals.taskCompleted": {
+          "sound": "off"
+        },
+        "accessibility.signals.taskFailed": {
+          "sound": "off"
+        },
+        "accessibility.signals.terminalBell": {
+          "sound": "off"
+        },
+        "accessibility.verbosity.terminal": false,
+        "accessibility.verbosity.editor": false,
+        "accessibility.verbosity.notification": false,
+        
+        // ===== ワークベンチ設定（UI制御） =====
+        "workbench.colorTheme": "Default Dark Modern",
+        "workbench.iconTheme": "material-icon-theme",
+        "workbench.sideBar.location": "left",
+        "workbench.panel.defaultLocation": "bottom",
+        "workbench.activityBar.visible": true,
+        "workbench.statusBar.visible": true,
+        "workbench.editor.showTabs": "multiple",
+        "workbench.editor.enablePreview": false,
+        "workbench.editor.enablePreviewFromQuickOpen": false,
+        "workbench.startupEditor": "welcomePage",
+        "workbench.enableExperiments": false,
+        "workbench.settings.enableNaturalLanguageSearch": false,
+        "workbench.welcomePage.walkthroughs.openOnInstall": false,
+        
+        // ===== Codespaces/リモート開発の通知を完全抑制 =====
+        "github.codespaces.devcontainerChangedNotificationStyle": "none",
+        "github.codespaces.showPerformanceExplorer": false,
+        "remote.tunnels.access.showInStatusBar": false,
+        "remote.autoForwardPorts": false,
+        
+        // ===== ステータスバーの簡素化 =====
+        "problems.showCurrentInStatus": true,
+        "git.decorations.enabled": false,
+        "scm.showChangesSummary": false,
+        "scm.diffDecorations": "gutter",
+        
+        // ===== ファイル設定 =====
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 1000,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "files.encoding": "utf8",
+        "files.watcherExclude": {
+          "**/.git/objects/**": true,
+          "**/.git/subtree-cache/**": true,
+          "**/node_modules/*/**": true,
+          "**/.hg/store/**": true,
+          "**/vendor/**": true
+        },
+        "files.exclude": {
+          "**/.*": true,
+          "**/.git": true,
+          "**/.gitignore": true,
+          "**/LICENSE": true,
+          "**/TEACHER_REVIEW_GUIDE.md": true,
+          "**/create-weekly-structure.sh": true,
+          "**/go.mod": true,
+          "**/.DS_Store": true,
+          "**/Thumbs.db": true
+        },
+        
+        // ===== 検索・エクスプローラー設定 =====
+        "search.exclude": {
+          "**/node_modules": true,
+          "**/bower_components": true,
+          "**/*.code-search": true,
+          "**/vendor": true
+        },
+        "search.searchOnType": false,
+        "explorer.compactFolders": false,
+        "explorer.confirmDelete": true,
+        "explorer.confirmDragAndDrop": true,
+        "breadcrumbs.enabled": true,
+        "breadcrumbs.symbolPath": "off",
+        
+        // ===== 通知・更新の抑制 =====
+        "extensions.ignoreRecommendations": true,
+        "extensions.autoCheckUpdates": false,
+        "extensions.autoUpdate": false,
+        "update.mode": "none",
+        "update.showReleaseNotes": false,
+        "telemetry.telemetryLevel": "off",
+        "git.showPushSuccessNotification": false,
+        "git.autofetch": false,
+        "git.autorefresh": true,
+        "git.enableSmartCommit": false,
+        "git.confirmSync": true,
+        
+        // ===== ターミナル設定 =====
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.fontSize": 14,
+        "terminal.integrated.lineHeight": 1.4,
+        "terminal.integrated.fontFamily": "'Consolas', 'Courier New', monospace",
+        "terminal.integrated.cursorBlinking": true,
+        "terminal.integrated.cursorStyle": "block",
+        "terminal.integrated.cursorWidth": 3,
+        "terminal.integrated.showExitAlert": false,
+        "terminal.integrated.confirmOnExit": "never",
+        
+        // ===== 配色設定 =====
+        "workbench.colorCustomizations": {
+          "editorIndentGuide.background": "#3a3a3a",
+          "editorIndentGuide.activeBackground": "#ffffff"
+        },
         "editor.tokenColorCustomizations": {
           "textMateRules": [
             {
@@ -140,64 +243,8 @@
           ]
         },
         
-        // アクセシビリティ支援機能
-        "editor.accessibilitySupport": "off",            // スクリーンリーダー対応
-        "accessibility.signals.lineHasError": {
-          "sound": "off",
-          "announcement": "off"
-        },
-        "accessibility.signals.lineHasWarning": {
-          "sound": "off",
-          "announcement": "off"
-        },
-        "accessibility.signals.lineHasBreakpoint": {
-          "sound": "off"
-        },
-        "editor.guides.bracketPairs": "active",         // ブラケットペアのガイド表示
-        "editor.bracketPairColorization.enabled": true, // ブラケットの色分け
-        "accessibility.verbosity.terminal": false,
-        "accessibility.verbosity.editor": false,
-        "accessibility.verbosity.notification": false,
-        "workbench.editor.accessibilityVerbosity": false,
-        
-        // 読みやすさの向上
-        "editor.wordWrap": "on",                        // 折り返し有効（長い行を自動改行）
-        "editor.wrappingIndent": "indent",              // 折り返し時はインデントを維持
-        "editor.wordWrapColumn": 120,                   // 折り返しの目安（120文字）
-        "editor.rulers": [80, 120],                     // 80文字と120文字の位置に縦線表示
-        "editor.smoothScrolling": true,                 // スムーズスクロール
-        "editor.mouseWheelZoom": true,                  // Ctrl+ホイールでズーム可能
-        
-        // ターミナルのアクセシビリティ
-        "terminal.integrated.fontSize": 14,
-        "terminal.integrated.lineHeight": 1.4,
-        "terminal.integrated.fontFamily": "'Consolas', 'Courier New', monospace",
-        "terminal.integrated.cursorBlinking": true,
-        "terminal.integrated.cursorStyle": "block",     // ブロック型カーソル
-        "terminal.integrated.cursorWidth": 3,
-        
-        // ===== ファイル設定 =====
-        "files.autoSave": "afterDelay",
-        "files.autoSaveDelay": 1000,
-        "files.trimTrailingWhitespace": true,
-        "files.insertFinalNewline": true,
-        "files.encoding": "utf8",
-
-        // ===== Go固有の設定 =====
-        "[go]": {
-          "editor.defaultFormatter": "golang.go",
-          "editor.formatOnSave": true,
-          "editor.codeActionsOnSave": {
-            "source.organizeImports": "explicit"
-          }
-        },
-        
-        // ===== インデントガイド設定（改善版） =====
-        "workbench.colorCustomizations": {
-          "editorIndentGuide.background": "#3a3a3a",
-          "editorIndentGuide.activeBackground": "#ffffff"
-        },
-        // レインボーインデント（拡張機能が必要な場合）
+        // ===== 拡張機能の設定 =====
+        "simpleBrowser.focusLockIndicator.enabled": true,
         "indentRainbow.colors": [
           "rgba(178, 34, 34, 0.3)",
           "rgba(255, 69, 0, 0.3)",
@@ -206,17 +253,10 @@
           "rgba(0, 0, 128, 0.3)",
           "rgba(139, 0, 139, 0.3)"
         ],
-        
-        // ===== 初心者向け拡張機能の設定 =====
-        // Error Lens: エラーを行内に表示
         "errorLens.enabled": true,
         "errorLens.enabledDiagnosticLevels": ["error", "warning"],
-        
-        // Trailing Spaces: 末尾スペースをハイライト
         "trailing-spaces.trimOnSave": true,
         "trailing-spaces.highlightCurrentLine": false,
-        
-        // Better Comments: コメントの色分け
         "better-comments.tags": [
           {
             "tag": "!",
@@ -264,12 +304,8 @@
             "italic": false
           }
         ],
-        
-        // Code Spell Checker: スペルチェック
         "cSpell.language": "en,en-GB",
         "cSpell.enableFiletypes": ["go"],
-        
-        // TODO Highlight
         "todohighlight.isEnable": true,
         "todohighlight.keywords": [
           {
@@ -292,172 +328,29 @@
           }
         ],
         
-        // Material Icon Theme
-        "workbench.iconTheme": "material-icon-theme",
-        
-        // Markdown設定
-        // Markdownプレビュー設定
+        // ===== Markdown設定 =====
         "markdown.preview.fontSize": 14,
         "markdown.preview.lineHeight": 1.6,
         "markdown.preview.openMarkdownLinks": "inPreview",
         "markdown.preview.scrollPreviewWithEditor": true,
         "markdown.preview.scrollEditorWithPreview": true,
         "markdown.preview.doubleClickToSwitchToEditor": false,
-        
-        // ファイルの関連付け（クリックで常にプレビュー）
         "workbench.editorAssociations": {
           "*.md": "vscode.markdown.preview.editor"
-        },
-        
-        // ===== ターミナル設定 =====
-        "terminal.integrated.defaultProfile.linux": "bash",
-        "terminal.integrated.fontSize": 14,
-
-        // ===== Codespaces/リモート開発の通知を抑制 =====
-        "github.codespaces.devcontainerChangedNotificationStyle": "none",
-        "github.codespaces.showPerformanceExplorer": false,
-        "remote.tunnels.access.showInStatusBar": false,
-        "remote.autoForwardPorts": false,
-        "workbench.welcomePage.walkthroughs.openOnInstall": false,
-        
-        // ===== ワークベンチ設定 =====
-        "workbench.secondarySideBar.visible": false,        // 追加：右パネルを非表示
-        "workbench.sideBar.location": "left",              // 追加：サイドバーは左側のみ
-        "workbench.panel.defaultLocation": "bottom",       // 追加：パネルは下部に固定
-        "workbench.startupEditor": "welcomePage",
-        "workbench.activityBar.visible": true,
-        "workbench.statusBar.visible": true,  // true から false に変更
-        "workbench.editor.showTabs": "multiple",
-        
-        // ===== 初心者向けUI簡素化設定 =====
-        // 不要なUI要素を非表示
-        "workbench.activityBar.visible": true,
-        "workbench.statusBar.visible": true,
-        "workbench.editor.showTabs": "multiple",
-        "workbench.editor.enablePreview": false,        // プレビューモード無効（ファイルが勝手に閉じない）
-        "workbench.editor.enablePreviewFromQuickOpen": false,
-        
-        // ブレッドクラム（パス表示）をシンプルに
-        "breadcrumbs.enabled": true,
-        "breadcrumbs.symbolPath": "off",
-        
-        // ミニマップを非表示（コードに集中）
-        "editor.minimap.enabled": false,
-        
-        // 不要な推奨事項・通知を抑制
-        "extensions.ignoreRecommendations": true,
-        "update.mode": "none",
-        "telemetry.telemetryLevel": "off",
-        
-        // セキュリティ・プライバシー設定（教育環境）
-        "extensions.autoCheckUpdates": false,
-        "extensions.autoUpdate": false,
-        "workbench.enableExperiments": false,
-        "workbench.settings.enableNaturalLanguageSearch": false,
-        "search.searchOnType": false,
-        
-        // Git decorations（ファイル名横のM/U表示）を控えめに
-        "scm.diffDecorations": "gutter",
-        "git.decorations.enabled": true,
-        
-        // 複雑なエディター機能を制限
-        "editor.codeLens": false,                       // コードレンズ無効
-        "editor.lightbulb.enabled": "off",             // 電球アイコン無効（初心者は混乱）
-        "editor.hover.delay": 500,                      // ホバー表示を少し遅らせる
-        "editor.parameterHints.enabled": true,          // パラメータヒントは残す（学習に有用）
-        
-        // 問題パネルの自動表示を制御
-        "problems.autoReveal": true,
-        "problems.showCurrentInStatus": true,
-        
-        // ターミナルの推奨を非表示
-        "terminal.integrated.showExitAlert": false,
-        "terminal.integrated.confirmOnExit": "never",
-        
-        // エディターの余計な装飾を削減
-        "editor.renderLineHighlight": "line",
-        "editor.occurrencesHighlight": "off",           // 同じ変数の自動ハイライトを無効
-        "editor.selectionHighlight": true,              // 選択したテキストのハイライトは維持
-        
-        // 折りたたみを制限（初心者が見失わないように）
-        "editor.folding": true,
-        "editor.foldingStrategy": "indentation",
-        "editor.showFoldingControls": "mouseover",      // マウスオーバー時のみ表示
-        
-        // Peek定義を無効化（初心者向けにシンプルに）
-        "editor.peekWidgetDefaultFocus": "editor",
-        
-        // ファイルエクスプローラーをシンプルに
-        "explorer.compactFolders": false,               // ネストを明示的に表示
-        "explorer.confirmDelete": true,                 // 削除確認は必須
-        "explorer.confirmDragAndDrop": true,            // ドラッグ＆ドロップ確認
-
-          // ステータスバーの簡素化
-    "problems.showCurrentInStatus": true,           // エラー数は表示（重要）
-    "git.decorations.enabled": false,               // Git装飾を非表示
-    "scm.showChangesSummary": false,                // SCM変更数を非表示
-    "remote.tunnels.access.showInStatusBar": false, // リモートトンネルを非表示
-    
-    // 通知の抑制
-    "extensions.ignoreRecommendations": true,
-    "update.showReleaseNotes": false,
-    "git.showPushSuccessNotification": false,
-    
-    // その他の不要な表示
-    "workbench.editor.showTabs": "multiple",
-    "telemetry.telemetryLevel": "off",
-
-        // Simple Browserも使えるようにしておく
-        //"simpleBrowser.focusLockIndicator.enabled": true ,
-
-        // ===== パフォーマンス最適化（多人数利用時） =====
-        "files.watcherExclude": {
-          "**/.git/objects/**": true,
-          "**/.git/subtree-cache/**": true,
-          "**/node_modules/*/**": true,
-          "**/.hg/store/**": true,
-          "**/vendor/**": true
-        },
-        "search.exclude": {
-          "**/node_modules": true,
-          "**/bower_components": true,
-          "**/*.code-search": true,
-          "**/vendor": true
-        },
-        "files.exclude": {
-          "**/.*": true,
-          "**/.git": true,                             // .gitは表示（学習用）
-          "**/.gitignore": true,
-          "**/LICENSE": true,
-          "**/TEACHER_REVIEW_GUIDE.md": true,
-          "**/LICENSE": true,
-          "**/create-weekly-structure.sh": true,
-          "**/go.mod": true,
-          "**/.DS_Store": true,
-          "**/Thumbs.db": true
-        },
-        
-        // Git操作の最適化
-        "git.autofetch": false,                         // 自動フェッチ無効（トラフィック削減）
-        "git.autorefresh": true,
-        "git.enableSmartCommit": false,                 // 誤コミット防止
-        "git.confirmSync": true,                        // プッシュ/プル時に確認
+        }
       }
     }
   },
   
-  // ライフサイクルコマンド
-  "onCreateCommand": "go version && go env",                    // コンテナ作成時（1回のみ）
-  "updateContentCommand": "go mod download || echo 'No go.mod found'",  // Prebuild時・更新時
-  "postCreateCommand": "echo 'Removing unwanted extensions...' && code --uninstall-extension github.copilot --uninstall-extension github.copilot-chat --uninstall-extension visualstudioexptteam.vscodeintellicode 2>/dev/null || echo 'Extensions already removed' && echo 'Codespace created!'", // 作成完了後
-  "postStartCommand": "echo 'Codespace ready! Go version:' && go version",  // 起動時（毎回）
-  "postAttachCommand": "echo 'Connected to Codespace'",         // 接続時
+  "onCreateCommand": "go version && go env",
+  "updateContentCommand": "go mod download || echo 'No go.mod found'",
+  "postCreateCommand": "echo 'Codespace created!'",
+  "postStartCommand": "echo 'Codespace ready! Go version:' && go version",
+  "postAttachCommand": "sleep 1 && code --command 'workbench.action.closeAuxiliaryBar' 2>/dev/null || echo 'Connected to Codespace'",
   
-  // ユーザー設定  
   "remoteUser": "vscode",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   
-  // ポートフォワーディング
   "forwardPorts": [8080],
   "portsAttributes": {
     "8080": {
@@ -468,13 +361,11 @@
     }
   },
   
-  // マウント設定（パフォーマンス改善）
   "mounts": [
     "source=go-mod-cache,target=/go/pkg/mod,type=volume",
     "source=go-build-cache,target=/home/vscode/.cache/go-build,type=volume"
   ],
   
-  // 環境変数
   "containerEnv": {
     "TZ": "Asia/Tokyo",
     "LANG": "ja_JP.UTF-8",
@@ -483,28 +374,11 @@
     "GOPROXY": "https://proxy.golang.org,direct"
   },
   
-  // 起動最適化
-  "waitFor": "onCreateCommand",  // onCreateCommandの完了を待つ（高速化）
+  "waitFor": "onCreateCommand",
   
-  // リソース制限（オプション：大規模プロジェクト向け）
   "hostRequirements": {
     "cpus": 2,
     "memory": "8gb",
     "storage": "32gb"
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
