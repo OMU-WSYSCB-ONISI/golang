@@ -312,13 +312,21 @@
         // ===== ターミナル設定 =====
         "terminal.integrated.defaultProfile.linux": "bash",
         "terminal.integrated.fontSize": 14,
+
+        // ===== Codespaces/リモート開発の通知を抑制 =====
+        "github.codespaces.devcontainerChangedNotificationStyle": "none",
+        "github.codespaces.showPerformanceExplorer": false,
+        "remote.tunnels.access.showInStatusBar": false,
+        "remote.autoForwardPorts": false,
+        "workbench.welcomePage.walkthroughs.openOnInstall": false,
+        
         // ===== ワークベンチ設定 =====
         "workbench.secondarySideBar.visible": false,        // 追加：右パネルを非表示
         "workbench.sideBar.location": "left",              // 追加：サイドバーは左側のみ
         "workbench.panel.defaultLocation": "bottom",       // 追加：パネルは下部に固定
         "workbench.startupEditor": "welcomePage",
         "workbench.activityBar.visible": true,
-        "workbench.statusBar.visible": false,  // true から false に変更
+        "workbench.statusBar.visible": true,  // true から false に変更
         "workbench.editor.showTabs": "multiple",
         
         // ===== 初心者向けUI簡素化設定 =====
@@ -397,7 +405,6 @@
     
     // その他の不要な表示
     "workbench.editor.showTabs": "multiple",
-    "workbench.statusBar.visible": false,
     "telemetry.telemetryLevel": "off",
 
         // Simple Browserも使えるようにしておく
@@ -486,6 +493,7 @@
     "storage": "32gb"
   }
 }
+
 
 
 
