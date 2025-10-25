@@ -21,6 +21,12 @@
         "bierner.markdown-preview-github-styling"
       ],
       
+      // 🔴 追加: Copilot関連拡張機能を明示的に除外
+      "excludedExtensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
+      ],
+      
       "settings": {
         // ===== AI補完機能の厳格な無効化 =====
         "github.copilot.enable": {
@@ -32,7 +38,23 @@
         },
         "github.copilot.editor.enableAutoCompletions": false,
         "github.copilot.editor.enableCodeActions": false,
+        // 🔴 追加: Copilot Chatの完全無効化
+        "github.copilot.chat.enabled": false,
+        "github.copilot.chat.welcomeMessage": "off",
         "github.copilot.chat.agent.enabled": false,
+        "github.copilot.chat.agent.currentEditorContext.enabled": false,
+        "github.copilot.chat.reviewAgent.enabled": false,
+        "github.copilot.chat.executePrompt.enabled": false,
+        "github.copilot.chat.newWorkspaceCreation.enabled": false,
+        
+        // 🔴 追加: チャットパネルの完全無効化
+        "chat.enabled": false,
+        "inlineChat.enabled": false,
+        "chat.commandCenter.enabled": false,
+        "workbench.chat.enabled": false,
+        "workbench.view.chat.enabled": false,
+        "workbench.panel.chat.enabled": false,
+        
         "vsintellicode.modify.editor.suggestSelection": "disabled",
         "vsintellicode.features.python.deepLearning": "disabled",
         "tabnine.experimentalAutoImports": false,
@@ -347,7 +369,8 @@
   "updateContentCommand": "go mod download || echo 'No go.mod found'",
   "postCreateCommand": "echo 'Codespace created!'",
   "postStartCommand": "echo 'Codespace ready! Go version:' && go version",
-  //"postAttachCommand": "sleep 1 && code --command 'workbench.action.closeAuxiliaryBar' 2>/dev/null || echo 'Connected to Codespace'",
+  // 🔴 修正: postAttachCommandを有効化してチャット拡張機能をアンインストール
+  "postAttachCommand": "code --uninstall-extension GitHub.copilot-chat 2>/dev/null || echo 'Connected to Codespace'",
   
   "remoteUser": "vscode",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -376,12 +399,6 @@
   },
   
   "waitFor": "onCreateCommand",
-
-  "chat.agent.enabled": false,
-  "github.copilot.chat.agent.currentEditorContext.enabled": false,
-  "github.copilot.chat.reviewAgent.enabled": false,
-  "github.copilot.chat.executePrompt.enabled": false,
-  "github.copilot.chat.newWorkspaceCreation.enabled": false,
   
   "hostRequirements": {
     "cpus": 2,
@@ -389,6 +406,3 @@
     "storage": "32gb"
   }
 }
-
-
-
