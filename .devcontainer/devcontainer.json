@@ -260,6 +260,7 @@
           "**/images/**": true,
           "**/LICENSE": true,
           "**/TEACHER_REVIEW_GUIDE.md": true,
+          "**/IMAGES.md": true,
           "**/create-weekly-structure.sh": true,
           "**/go.mod": true,
           "**/.DS_Store": true,
@@ -445,4 +446,5 @@
     "storage": "32gb"
   }
 }
+
 
