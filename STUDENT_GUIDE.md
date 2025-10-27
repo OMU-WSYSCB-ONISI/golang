@@ -61,13 +61,37 @@
    https://classroom.github.com/a/xxxxxxxx
    ```
 
-2. 「Accept this assignment」をクリック
+<img src="images/empty-browser-window-assignment.png" alt="課題リンク" width="600">
 
-3. 約30秒待つと「Your assignment has been created」と表示される
+2. GitHubにサインインします
 
-4. 「Go to repository」をクリック
+<img src="images/Sign-in-to-GitHub-to-continue-to-GitHub-Classroom.png" alt="GitHubサインイン" width="500">
 
-5. **重要**: 表示されたURL を**ブックマーク**してください
+<img src="images/Sign-in-to-GitHub-to-continue-to-GitHub-Classroom-with-id-pass.png" alt="IDとパスワード入力" width="500">
+
+3. 二要素認証が求められた場合は、認証アプリのコードを入力します
+
+<img src="images/Two-factor-authentication-request.png" alt="二要素認証リクエスト" width="500">
+
+<img src="images/Two-factor-authentication-option.png" alt="二要素認証オプション" width="500">
+
+<img src="images/Two-factor-authentication-Enter-the-code-from-your-two-factor-authentication-app.png" alt="認証コード入力" width="500">
+
+4. 「Accept this assignment」をクリック
+
+<img src="images/Accept-the-assignment-websys-golang-xx.png" alt="課題の受け入れ" width="700">
+
+<img src="images/Accept-the-assignment-websys-golang-xx-cont.png" alt="課題受け入れ処理中" width="700">
+
+5. 約30秒待つと「Your assignment has been created」と表示される
+
+<img src="images/You-are-ready-to-go-You-accepted-the-assignment.png" alt="課題受け入れ完了" width="700">
+
+6. 表示されたURLをクリック
+
+<img src="images/created-repo.png" alt="作成されたリポジトリ" width="800">
+
+7. **重要**: 表示されたURL を**ブックマーク**してください
    ```
    例: https://github.com/classroom-org/repo-name-yourname
    ```
@@ -81,9 +105,25 @@
 
 3. 「**Create codespace on main**」をクリック
 
-4. 約1-2分待つ
+<img src="images/created-repo-code-create.png" alt="Codespace作成" width="600">
+
+4. 約1-2分待つ（Codespace構築中）
+
+<img src="images/codesapce-building-0.png" alt="構築開始" width="700">
+
+<img src="images/codesapce-building-1.png" alt="構築中1" width="700">
+
+<img src="images/codesapce-building-2.png" alt="構築中2" width="700">
+
+<img src="images/codesapce-building-3.png" alt="構築中3" width="700">
+
+<img src="images/codesapce-building-4.png" alt="構築中4" width="700">
+
+<img src="images/codesapce-building-5.png" alt="構築中5" width="700">
 
 5. VS Codeのような画面が表示されたら準備完了 ✅
+
+<img src="images/codesapce-ready.png" alt="Codespace準備完了" width="800">
 
 ---
 
@@ -106,10 +146,15 @@
 #### 環境の起動
 
 1. ブックマークしたリポジトリURLにアクセス
+<img src="images/created-repo.png" alt="作成されたリポジトリ" width="800">
 
 2. 「Code」→「Codespaces」
 
-3. 既存のCodespaceを選択（約3秒で起動）
+3. 既存のCodespaceを「Open in browser」で選択（約3秒で起動）
+<img src="images/codespaces-Open-in-Browser2.png"  width="800">
+もしくは以下から
+<img src="images/codespaces-Open-in-Browser.png"  width="800">
+
 
 #### プログラムの作成と実行（GUI操作のみ）
 
@@ -118,6 +163,8 @@
    例: 第3週なら week03 フォルダ
    ```
 
+<img src="images/codesapce-open-maingo.png" alt="main.goを開く" width="800">
+
 2. `main.go`ファイルを開いて編集
 
 3. **プログラムの実行（ボタンをクリックするだけ）**
@@ -125,7 +172,16 @@
    **方法A: Run Codeボタン（推奨）**
    - 画面右上の「▶ Run Code」ボタンをクリック
    - 画面下部のターミナルに結果が表示される
-   
+
+<img src="images/codesapce-run-maingo-0.png" alt="Run Codeボタン" width="800">
+
+<img src="images/codesapce-run-maingo-1.png" alt="実行中1" width="800">
+
+<img src="images/codesapce-run-maingo-2.png" alt="実行結果" width="800">
+<img src="images/codesapce-run-maingo-3.png" alt="Simple Browser" width="800">
+<img src="images/codesapce-run-maingo-4.png" alt="localhost入力" width="800">
+<img src="images/codesapce-run-maingo-5.png" alt="プレビュー表示" width="800">
+
    **方法B: 右クリックメニュー**
    - ファイル上で右クリック
    - 「Run Code」を選択
@@ -139,10 +195,13 @@
    b. 「**simple browser**」と入力
    
    c. 「**Simple Browser: Show**」を選択
+
    
    d. `http://localhost:8080` と入力してEnter
+
    
    e. 右側にブラウザ画面が表示される
+
    
    ```
    ┌──────────────┬──────────────┐
@@ -169,6 +228,12 @@
 3. 「Create branch」をクリック
 ```
 
+<img src="images/mycodespaces-from-codesapce.png" alt="メニューを開く" width="700">
+
+<img src="images/page-https--github.com-codespaces-stopped-codespace-Export-changes-to-a-branch.png" alt="Export changes to a branch" width="700">
+
+<img src="images/page-https--github.com-codespaces-stopped-codespace-new-branch.png" alt="ブランチ作成" width="700">
+
 #### ブランチ名の報告
 
 1. 表示されたブランチ名をコピー
@@ -176,11 +241,17 @@
    例: codespace-symmetrical-guacamole-q74vxx47qp92x7wv
    ```
 
+<img src="images/page-https--github.com-codespaces-stopped-codespace-new-branch-cont.png" alt="ブランチ名表示" width="700">
+
+<img src="images/page-https--github.com-codespaces-stopped-codespace-new-branch-finished.png" alt="ブランチ作成完了" width="700">
+
 2. LMSの提出ボックスにブランチ名を貼り付け
 
 3. LMSで「提出」をクリック
 
 4. 提出完了 ✅
+
+<img src="images/forked-from-OMU-WSYSCB-ONISI-wsyscb25-websys-golang-xx-golang-See-branch.png" alt="ブランチ確認" width="800">
 
 ### 【ステップ4】Codespaceの停止（超重要）⚠️
 
@@ -192,11 +263,22 @@
 
 2. 「**Code**」→「**Codespaces**」タブをクリック
 
+<img src="images/page-https--github.com-codespaces.png" alt="Codespacesタブ" width="700">
+
 3. 実行中のCodespace（緑色の●マーク）の右側「**...**」をクリック
+
+<img src="images/page-https--github.com-codespaces-actions.png" alt="アクションメニュー" width="700">
 
 4. 「**Stop codespace**」を選択
 
+<img src="images/page-https--github.com-codespaces-stop-codespace.png" alt="Stop codespace" width="700">
+
 5. ステータスが「**Stopped**」になれば完了 ✅
+
+<img src="images/page-https--github.com-codespaces-stopped-codespace.png" alt="停止完了" width="700">
+
+もしくは，以下から「Stop Codespaces」を選択
+<img src="images/codespaces-menu-stop-codespaces.png" alt="停止完了" width="700">
 
 #### 停止のタイミング
 
@@ -240,6 +322,8 @@
 別の場所:
 - 画面上部の「...」（3点メニュー）からもアクセス可能
 ```
+
+<img src="images/page-https---github.com-codespaces-menu.png" alt="Codespacesメニュー" width="700">
 
 ### Q2: ブランチ名を忘れてしまいました
 
@@ -410,6 +494,8 @@ Git操作の知識は一切不要です。
 2. すべての実行中Codespaceを停止
 3. 使っていないCodespaceは削除
 ```
+
+<img src="images/page-https---github.com-codespaces-0.png" alt="複数のCodespace" width="700">
 
 ### Q15: 停止すると作業内容が消えますか？
 
@@ -755,6 +841,7 @@ go mod tidy
 ```
 
 ---
+
 ## ブラウザでの確認方法
 
 ### 方法1: エディタ内プレビュー（推奨）
@@ -767,7 +854,9 @@ go mod tidy
 ### 方法3: Simple Browser（シンプル表示）
 1. `Ctrl+Shift+P` でコマンドパレットを開く
 2. "Simple Browser: Show" を選択
-3. `http://localhost:8080` を入力---
+3. `http://localhost:8080` を入力
+
+---
 
 ## サポート情報
 
@@ -796,4 +885,3 @@ go mod tidy
 ### 教員・TA向けドキュメント
 - **[TEACHER_REVIEW_GUIDE.md](TEACHER_REVIEW_GUIDE.md)** - 課題確認・評価ガイド
 - **[CONTAINER_SETUP_MANUAL.md](CONTAINER_SETUP_MANUAL.md)** - コンテナイメージ構築ガイド（Podman版）
-
