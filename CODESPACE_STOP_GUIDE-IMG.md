@@ -165,7 +165,7 @@
 
 1. 「**MyCodespaces**」を選択
 
-<img src="images/page-https---github.com-codespaces-menu.png" alt="Codespacesメニュー" width="700">
+<img src="images/mycodespaces-from-codesapce.png" alt="Codespacesメニュー" width="700">
 
 #### ステップ3: 確認
 
