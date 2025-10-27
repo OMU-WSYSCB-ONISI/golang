@@ -87,7 +87,7 @@
 
 <img src="images/You-are-ready-to-go-You-accepted-the-assignment.png" alt="課題受け入れ完了" width="700">
 
-6. 「Go to repository」をクリック
+6. 表示されたURLをクリック
 
 <img src="images/created-repo.png" alt="作成されたリポジトリ" width="800">
 
@@ -100,8 +100,6 @@
 ### ステップ2: Codespacesの起動
 
 1. リポジトリページで緑色の「**Code**」ボタンをクリック
-
-<img src="images/created-repo-code-local.png" alt="Codeボタン" width="600">
 
 2. 「**Codespaces**」タブを選択
 
@@ -177,6 +175,9 @@
 <img src="images/codesapce-run-maingo-1.png" alt="実行中1" width="800">
 
 <img src="images/codesapce-run-maingo-2.png" alt="実行結果" width="800">
+<img src="images/codesapce-run-maingo-3.png" alt="Simple Browser" width="800">
+<img src="images/codesapce-run-maingo-4.png" alt="localhost入力" width="800">
+<img src="images/codesapce-run-maingo-5.png" alt="プレビュー表示" width="800">
 
    **方法B: 右クリックメニュー**
    - ファイル上で右クリック
@@ -192,15 +193,12 @@
    
    c. 「**Simple Browser: Show**」を選択
 
-<img src="images/codesapce-run-maingo-3.png" alt="Simple Browser" width="800">
    
    d. `http://localhost:8080` と入力してEnter
 
-<img src="images/codesapce-run-maingo-4.png" alt="localhost入力" width="800">
    
    e. 右側にブラウザ画面が表示される
 
-<img src="images/codesapce-run-maingo-5.png" alt="プレビュー表示" width="800">
    
    ```
    ┌──────────────┬──────────────┐
