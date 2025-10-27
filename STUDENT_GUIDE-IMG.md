@@ -277,6 +277,9 @@
 
 <img src="images/page-https--github.com-codespaces-stopped-codespace.png" alt="停止完了" width="700">
 
+もしくは，以下から「Stop Codespaces」を選択
+<img src="images/codespaces-menu-stop-codespaces.png" alt="停止完了" width="700">
+
 #### 停止のタイミング
 
 以下の場合は**必ず**停止してください:
