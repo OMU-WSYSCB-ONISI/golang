@@ -37,15 +37,26 @@ week15/ - 第15週の課題
 ## 🚀 クイックスタート
 
 ### 初めて使う場合
+
+<img src="images/Accept-the-assignment-websys-golang-xx.png" alt="課題の受け入れ" width="600">
+
 1. [STUDENT_GUIDE.md](STUDENT_GUIDE.md)の「初回セットアップ」を参照
 2. 約1-2分でCodespacesが起動します
 
+<img src="images/codesapce-building-0.png" alt="Codespace構築中" width="600">
+
 ### 2回目以降
+
+<img src="images/created-repo-code-create.png" alt="Codespaceの作成" width="600">
+
 1. リポジトリページで「Code」→「Codespaces」
 2. 既存のCodespaceを選択
 3. 約3秒で起動
 
 ### 課題の進め方
+
+<img src="images/codesapce-ready.png" alt="Codespace準備完了" width="800">
+
 1. LMSで課題内容を確認
 2. 該当週のフォルダで作業（例：`week03/main.go`）
 3. プログラムを実行・テスト
@@ -63,12 +74,16 @@ week15/ - 第15週の課題
 - ❌ 複数のCodespaceを作成しない
 - ⏸️ **作業終了後は必ず停止**（課金防止）
 
+<img src="images/page-https--github.com-codespaces-stop-codespace.png" alt="Codespaceの停止" width="600">
+
 詳細は [CODESPACE_STOP_GUIDE.md](CODESPACE_STOP_GUIDE.md) を参照してください。
 
 ### 提出について
 - Git操作は不要
 - 「Export changes to a branch」機能を使用
 - ブランチ名をLMSで報告
+
+<img src="images/page-https--github.com-codespaces-stopped-codespace-Export-changes-to-a-branch.png" alt="ブランチへのエクスポート" width="600">
 
 詳細は [STUDENT_GUIDE.md](STUDENT_GUIDE.md) の「提出方法」を参照してください。
 
