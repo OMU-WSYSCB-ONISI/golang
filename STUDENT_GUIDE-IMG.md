@@ -228,7 +228,7 @@
 3. 「Create branch」をクリック
 ```
 
-<img src="images/codespaces-menu-0.png" alt="メニューを開く" width="700">
+<img src="images/mycodespaces-from-codesapce.png" alt="メニューを開く" width="700">
 
 <img src="images/page-https--github.com-codespaces-stopped-codespace-Export-changes-to-a-branch.png" alt="Export changes to a branch" width="700">
 
