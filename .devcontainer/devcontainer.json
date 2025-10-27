@@ -257,6 +257,7 @@
           "**/.*": true,
           "**/.git": true,
           "**/.gitignore": true,
+          "**/images/**": true,
           "**/LICENSE": true,
           "**/TEACHER_REVIEW_GUIDE.md": true,
           "**/create-weekly-structure.sh": true,
@@ -444,3 +445,4 @@
     "storage": "32gb"
   }
 }
+
