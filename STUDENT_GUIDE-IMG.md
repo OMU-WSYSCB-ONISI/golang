@@ -151,7 +151,8 @@
 2. 「Code」→「Codespaces」
 
 3. 既存のCodespaceを「Open in browser」で選択（約3秒で起動）
-
+<img src="images/codespaces-Open-in-Browser2.png"  width="800">
+もしくは以下から
 <img src="images/codespaces-Open-in-Browser.png"  width="800">
 
 
