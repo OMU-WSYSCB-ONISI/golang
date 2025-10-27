@@ -146,12 +146,12 @@
 #### 環境の起動
 
 1. ブックマークしたリポジトリURLにアクセス
+<img src="images/created-repo.png" alt="作成されたリポジトリ" width="800">
 
 2. 「Code」→「Codespaces」
 
 3. 既存のCodespaceを選択（約3秒で起動）
 
-<img src="images/Codespace-is-stopped-Restart-codespace.png" alt="Codespace再起動" width="700">
 
 #### プログラムの作成と実行（GUI操作のみ）
 
