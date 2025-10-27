@@ -98,21 +98,16 @@
 
 ### 方法A: ブラウザから停止（推奨・最も簡単）
 
-#### ステップ1: GitHubリポジトリページを開く
+#### ステップ1: GitHub　Codespacesページを開く
 
 - ブックマークしたリポジトリURLにアクセス
   ```
-  例: https://github.com/classroom-org/repo-name-yourname
+  例: https://github.com/codespaces
   ```
-
-#### ステップ2: Codespacesタブを開く
-
-1. 緑色の「**Code**」ボタンをクリック
-2. 「**Codespaces**」タブを選択
 
 <img src="images/page-https--github.com-codespaces.png" alt="Codespacesタブ" width="700">
 
-#### ステップ3: Codespaceを停止
+#### ステップ2: Codespaceを停止
 
 1. 実行中のCodespaceを探す
    - 緑色の「●」マークが表示されている
@@ -125,7 +120,7 @@
 
 <img src="images/page-https--github.com-codespaces-stop-codespace.png" alt="Stop codespace選択" width="700">
 
-#### ステップ4: 停止を確認
+#### ステップ3: 停止を確認
 
 - Codespaceのステータスが「**Stopped**」になっていることを確認
 - 緑色の「●」が消えている
@@ -164,21 +159,17 @@
 
 #### ステップ1: メニューを開く
 
-- Codespaces画面の左下にある「≡」（3本線）メニューをクリック
-
-<img src="images/codespaces-menu-0.png" alt="メニューを開く" width="700">
+- Codespaces画面の右上にある「≡」（3本線）メニューをクリック
 
 #### ステップ2: 停止を実行
 
-1. 「**Codespaces**」を選択
-2. 「**Stop Current Codespace**」を選択
+1. 「**MyCodespaces**」を選択
 
 <img src="images/page-https---github.com-codespaces-menu.png" alt="Codespacesメニュー" width="700">
 
 #### ステップ3: 確認
 
-- 画面が閉じるまで待つ
-- GitHubで停止を確認（方法A参照）
+- GitHubで停止させる（方法A参照）
 
 **推奨**: 方法Aが最も確実で簡単です
 
