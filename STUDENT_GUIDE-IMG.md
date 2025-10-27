@@ -150,7 +150,9 @@
 
 2. 「Code」→「Codespaces」
 
-3. 既存のCodespaceを選択（約3秒で起動）
+3. 既存のCodespaceを「Open in browser」で選択（約3秒で起動）
+
+<img src="images/codespaces-Open-in-Browser.png"  width="800">
 
 
 #### プログラムの作成と実行（GUI操作のみ）
