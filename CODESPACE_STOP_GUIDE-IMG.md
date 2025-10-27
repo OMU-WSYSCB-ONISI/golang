@@ -102,7 +102,7 @@
 
 - ブックマークしたリポジトリURLにアクセス
   ```
-  例: https://github.com/codespaces
+  例: https://github.com/codespace
   ```
 
 <img src="images/page-https--github.com-codespaces.png" alt="Codespacesタブ" width="700">
