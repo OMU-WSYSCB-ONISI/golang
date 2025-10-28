@@ -38,16 +38,10 @@ week15/ - 第15週の課題
 
 ### 初めて使う場合
 
-<img src="images/Accept-the-assignment-websys-golang-xx.png" alt="課題の受け入れ" width="600">
-
 1. [STUDENT_GUIDE.md](STUDENT_GUIDE.md)の「初回セットアップ」を参照
 2. 約1-2分でCodespacesが起動します
 
-<img src="images/codesapce-building-0.png" alt="Codespace構築中" width="600">
-
 ### 2回目以降
-
-<img src="images/created-repo-code-create.png" alt="Codespaceの作成" width="600">
 
 1. リポジトリページで「Code」→「Codespaces」
 2. 既存のCodespaceを選択
