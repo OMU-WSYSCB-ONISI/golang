@@ -121,7 +121,7 @@
 
 <img src="images/codesapce-building-5.png" alt="構築中5" width="700">
 
-5. VS Codeのような画面が表示されたら準備完了 ✅
+5. 「Codespace Ready」と表示のあるVS Codeのような画面が表示されたら準備完了 ✅
 
 <img src="images/codesapce-ready.png" alt="Codespace準備完了" width="800">
 
@@ -885,3 +885,4 @@ go mod tidy
 ### 教員・TA向けドキュメント
 - **[TEACHER_REVIEW_GUIDE.md](TEACHER_REVIEW_GUIDE.md)** - 課題確認・評価ガイド
 - **[CONTAINER_SETUP_MANUAL.md](CONTAINER_SETUP_MANUAL.md)** - コンテナイメージ構築ガイド（Podman版）
+
