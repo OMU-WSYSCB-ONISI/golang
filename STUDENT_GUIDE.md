@@ -245,8 +245,6 @@
 
 4. 提出完了 ✅
 
-<img src="images/forked-from-OMU-WSYSCB-ONISI-wsyscb25-websys-golang-xx-golang-See-branch.png" alt="ブランチ確認" width="800">
-
 ### 【ステップ4】Codespaceの停止（超重要）⚠️
 
 **必ず実行してください！停止しないと課金され続けます。**
@@ -879,6 +877,7 @@ go mod tidy
 ### 教員・TA向けドキュメント
 - **[TEACHER_REVIEW_GUIDE.md](TEACHER_REVIEW_GUIDE.md)** - 課題確認・評価ガイド
 - **[CONTAINER_SETUP_MANUAL.md](CONTAINER_SETUP_MANUAL.md)** - コンテナイメージ構築ガイド（Podman版）
+
 
 
 
