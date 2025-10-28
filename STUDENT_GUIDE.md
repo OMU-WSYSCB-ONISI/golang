@@ -174,12 +174,6 @@
    - 画面下部のターミナルに結果が表示される
 
 <img src="images/codesapce-run-maingo-0.png" alt="Run Codeボタン" width="800">
-
-<img src="images/codesapce-run-maingo-1.png" alt="実行中1" width="800">
-
-<img src="images/codesapce-run-maingo-2.png" alt="実行結果" width="800">
-<img src="images/codesapce-run-maingo-3.png" alt="Simple Browser" width="800">
-<img src="images/codesapce-run-maingo-4.png" alt="localhost入力" width="800">
 <img src="images/codesapce-run-maingo-5.png" alt="プレビュー表示" width="800">
 
    **方法B: 右クリックメニュー**
@@ -885,5 +879,6 @@ go mod tidy
 ### 教員・TA向けドキュメント
 - **[TEACHER_REVIEW_GUIDE.md](TEACHER_REVIEW_GUIDE.md)** - 課題確認・評価ガイド
 - **[CONTAINER_SETUP_MANUAL.md](CONTAINER_SETUP_MANUAL.md)** - コンテナイメージ構築ガイド（Podman版）
+
 
 
