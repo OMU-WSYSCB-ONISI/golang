@@ -100,11 +100,10 @@
 
 #### ステップ1: GitHub　Codespacesページを開く
 
-- ブックマークしたリポジトリURLにアクセス
+- ブックマークしたリポジトリURLもしくは以下にアクセス
   ```
   例: https://github.com/codespace
   ```
-
 <img src="images/page-https--github.com-codespaces.png" alt="Codespacesタブ" width="700">
 
 #### ステップ2: Codespaceを停止
@@ -446,3 +445,4 @@
 **停止を習慣化して、無料枠内で快適に開発しましょう！**
 
 **最重要**: 課題提出後すぐに停止 ⚠️
+
