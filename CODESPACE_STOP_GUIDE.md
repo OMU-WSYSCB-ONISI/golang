@@ -98,30 +98,34 @@
 
 ### 方法A: ブラウザから停止（推奨・最も簡単）
 
-#### ステップ1: GitHubリポジトリページを開く
+#### ステップ1: GitHub　Codespacesページを開く
 
 - ブックマークしたリポジトリURLにアクセス
   ```
-  例: https://github.com/classroom-org/repo-name-yourname
+  例: https://github.com/codespace
   ```
 
-#### ステップ2: Codespacesタブを開く
+<img src="images/page-https--github.com-codespaces.png" alt="Codespacesタブ" width="700">
 
-1. 緑色の「**Code**」ボタンをクリック
-2. 「**Codespaces**」タブを選択
-
-#### ステップ3: Codespaceを停止
+#### ステップ2: Codespaceを停止
 
 1. 実行中のCodespaceを探す
    - 緑色の「●」マークが表示されている
    - または「Active」と表示
+
+<img src="images/page-https--github.com-codespaces-actions.png" alt="実行中のCodespace" width="700">
+
 2. 右側の「**...**」（3点メニュー）をクリック
 3. 「**Stop codespace**」を選択
 
-#### ステップ4: 停止を確認
+<img src="images/page-https--github.com-codespaces-stop-codespace.png" alt="Stop codespace選択" width="700">
+
+#### ステップ3: 停止を確認
 
 - Codespaceのステータスが「**Stopped**」になっていることを確認
 - 緑色の「●」が消えている
+
+<img src="images/page-https--github.com-codespaces-stopped-codespace.png" alt="停止完了" width="700">
 
 **所要時間**: 約10秒
 
@@ -138,10 +142,14 @@
 1. 「**Codespaces: Stop Current Codespace**」と入力
 2. 候補から選択してEnter
 
+<img src="images/codespaces-menu-stop-codespaces.png" alt="停止コマンド" width="700">
+
 #### ステップ3: 確認
 
 - 画面が閉じるまで待つ
 - GitHubで停止を確認（方法A参照）
+
+<img src="images/codespaces-menu-stop-codespaces-cont.png" alt="停止処理中" width="700">
 
 **所要時間**: 約5秒
 
@@ -151,17 +159,17 @@
 
 #### ステップ1: メニューを開く
 
-- Codespaces画面の左下にある「≡」（3本線）メニューをクリック
+- Codespaces画面の右上にある「≡」（3本線）メニューをクリック
 
 #### ステップ2: 停止を実行
 
-1. 「**Codespaces**」を選択
-2. 「**Stop Current Codespace**」を選択
+1. 「**MyCodespaces**」を選択
+
+<img src="images/mycodespaces-from-codesapce.png" alt="Codespacesメニュー" width="700">
 
 #### ステップ3: 確認
 
-- 画面が閉じるまで待つ
-- GitHubで停止を確認（方法A参照）
+- GitHubで停止させる（方法A参照）
 
 **推奨**: 方法Aが最も確実で簡単です
 
@@ -173,8 +181,10 @@
 
 **前回の状態がそのまま残ります**
 
+<img src="images/Codespace-is-stopped-Restart-codespace.png" alt="Codespace再起動" width="700">
+
 1. リポジトリの「Code」→「Codespaces」タブ
-2. 停止中のCodespace（「Stopped」）を選択
+2. 停止中のCodespace（「Stopped」）から「Open in Browser」を選択
 3. 約**3秒で再開**
 4. 前回のファイル・ディレクトリがそのまま残っている
 
@@ -288,6 +298,8 @@
 
 この授業では1個だけ使用します。
 ```
+
+<img src="images/page-https---github.com-codespaces-0.png" alt="複数のCodespace" width="700">
 
 ### Q4: 自動停止に頼ってもいいですか？
 
