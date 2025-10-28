@@ -180,8 +180,6 @@
 
 **前回の状態がそのまま残ります**
 
-<img src="images/Codespace-is-stopped-Restart-codespace.png" alt="Codespace再起動" width="700">
-
 1. リポジトリの「Code」→「Codespaces」タブ
 2. 停止中のCodespace（「Stopped」）から「Open in Browser」を選択
 3. 約**3秒で再開**
@@ -445,4 +443,5 @@
 **停止を習慣化して、無料枠内で快適に開発しましょう！**
 
 **最重要**: 課題提出後すぐに停止 ⚠️
+
 
