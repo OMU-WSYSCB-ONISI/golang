@@ -34,7 +34,7 @@
 
 ### 📋 このリポジトリの使い方
 
-**1つのリポジトリで全15週の課題に取り組みます。**
+**1つのリポジトリで全週の課題に取り組みます。**
 
 - ✅ 初回セットアップは第1週のみ
 - ✅ 第2週以降は同じリポジトリで作業継続
@@ -52,7 +52,7 @@
 
 ---
 
-## 初回セットアップ（第1週のみ・約2分）
+## 初回セットアップ（第1週のみ）
 
 ### ステップ1: リポジトリの作成
 
@@ -83,7 +83,7 @@
 
 <img src="images/Accept-the-assignment-websys-golang-xx-cont.png" alt="課題受け入れ処理中" width="700">
 
-5. 約30秒待つと「Your assignment has been created」と表示される
+5. しばらく待つと「Your assignment has been created」と表示される
 
 <img src="images/You-are-ready-to-go-You-accepted-the-assignment.png" alt="課題受け入れ完了" width="700">
 
@@ -95,7 +95,7 @@
    ```
    例: https://github.com/classroom-org/repo-name-yourname
    ```
-   このURLは学期中ずっと使用します！
+   この個人専用URLは学期中ずっと使用します！
 
 ### ステップ2: Codespacesの起動
 
@@ -107,7 +107,7 @@
 
 <img src="images/created-repo-code-create.png" alt="Codespace作成" width="600">
 
-4. 約1-2分待つ（Codespace構築中）
+4. しばらく待つ（Codespace構築中）
 
 <img src="images/codesapce-building-0.png" alt="構築開始" width="700">
 
@@ -125,6 +125,8 @@
 
 <img src="images/codesapce-ready.png" alt="Codespace準備完了" width="800">
 
+6. 「Copilot」関連の領域は不要なので閉じること
+
 ---
 
 ## 毎週の課題の進め方（第2週以降も同じ）
@@ -133,12 +135,11 @@
 
 1. LMSにログイン
 
-2. 「Go言語プログラミング」コースを開く
+2. コースを開く
 
-3. 今週の課題ページで以下を確認：
+3. 今週の課題ページで以下を確認(例)：
    - ✅ 詳細な課題内容・要件
    - ✅ 入出力例
-   - ✅ ヒント
    - ✅ 締切日時
 
 ### 【ステップ2】Codespacesで作業
@@ -150,7 +151,7 @@
 
 2. 「Code」→「Codespaces」
 
-3. 既存のCodespaceを「Open in browser」で選択（約3秒で起動）
+3. 既存のCodespaceを「Open in browser」で選択
 <img src="images/codespaces-Open-in-Browser2.png"  width="800">
 もしくは以下から
 <img src="images/codespaces-Open-in-Browser.png"  width="800">
@@ -158,11 +159,8 @@
 
 #### プログラムの作成と実行（GUI操作のみ）
 
-1. 左側のエクスプローラーで今週のフォルダを開く
-   ```
-   例: 第3週なら week03 フォルダ
-   ```
-
+1. 左側のエクスプローラーで未更新のフォルダを開く
+ 
 <img src="images/codesapce-open-maingo.png" alt="main.goを開く" width="800">
 
 2. `main.go`ファイルを開いて編集
@@ -180,7 +178,9 @@
    - ファイル上で右クリック
    - 「Run Code」を選択
 
-4. **プレビューを見る（Webサーバー課題のみ）**
+4A. **プレビューを見る（Webサーバー課題のみ）**
+
+4B. **プレビューを見る（Webサーバー課題のみ）**
    
    **注意**: LMSの課題内容で「Webサーバー」「HTTP」「ブラウザで確認」などの指示がある場合のみ実施してください。
    
@@ -189,10 +189,8 @@
    b. 「**simple browser**」と入力
    
    c. 「**Simple Browser: Show**」を選択
-
-   
+  
    d. `http://localhost:8080` と入力してEnter
-
    
    e. 右側にブラウザ画面が表示される
 
@@ -877,6 +875,7 @@ go mod tidy
 ### 教員・TA向けドキュメント
 - **[TEACHER_REVIEW_GUIDE.md](TEACHER_REVIEW_GUIDE.md)** - 課題確認・評価ガイド
 - **[CONTAINER_SETUP_MANUAL.md](CONTAINER_SETUP_MANUAL.md)** - コンテナイメージ構築ガイド（Podman版）
+
 
 
 
