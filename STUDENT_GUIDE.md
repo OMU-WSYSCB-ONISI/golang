@@ -179,6 +179,17 @@
    - 「Run Code」を選択
 
 4A. **プレビューを見る（Webサーバー課題のみ）**
+
+   **注意**: LMSの課題内容で「Webサーバー」「HTTP」「ブラウザで確認」などの指示がある場合のみ実施してください。
+   
+   a. 実行中であることが確認できれば，以下，画面下部の「ポート」を選択
+   - ポート: 実行中のプログラムが待機しているポート
+   - 転送されたアドレス
+   -- アドレス
+   -- ボタン  
+   - 実行中のプロセス
+   - 表示範囲
+   - 配信元
 <img src="images/cs-w2-port.png" width="800">
 <img src="images/cs-w2-sbrw-connect.png" width="800">
 <img src="images/ cs-w1-sample.png" width="800">
@@ -879,6 +890,7 @@ go mod tidy
 ### 教員・TA向けドキュメント
 - **[TEACHER_REVIEW_GUIDE.md](TEACHER_REVIEW_GUIDE.md)** - 課題確認・評価ガイド
 - **[CONTAINER_SETUP_MANUAL.md](CONTAINER_SETUP_MANUAL.md)** - コンテナイメージ構築ガイド（Podman版）
+
 
 
 
