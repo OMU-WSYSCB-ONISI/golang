@@ -1,13 +1,16 @@
 package main
-
-import "fmt"
-
+import (
+	"fmt"
+	"net/http"
+)
 func main() {
-	// Week 02: ここに課題のコードを記述してください
-	// 詳細な課題内容はLMSで確認してください
-	
-	fmt.Println("Week 02 課題")
-	
-	// 以下に実装してください
-	
+    http.HandleFunc("/hello", hellohandler) 
+
+	fmt.Println("Launch server...")
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		fmt.Printf("Failed to launch server: %v", err)
+	}
+}
+func hellohandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "こんにちは from Glitch !")
 }
