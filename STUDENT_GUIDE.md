@@ -191,8 +191,18 @@
    - 表示範囲
    - 配信元
 <img src="images/cs-w2-port.png" width="800">
+
+   b. 「エディターでのプレビュー」を選ぶ
 <img src="images/cs-w2-sbrw-connect.png" width="800">
 <img src="images/ cs-w1-sample.png" width="800">
+   
+   c. 右クリックメニューからも可能
+   - ブラウザーで開く
+   - エディターでのプレビュー
+   - ポートの表示範囲
+       - Private
+       - Private to Org.
+       - **Public**
 <img src="images/cs-w2-port-pub.png" width="800">
 
 4B. **プレビューを見る（Webサーバー課題のみ）**
@@ -890,6 +900,7 @@ go mod tidy
 ### 教員・TA向けドキュメント
 - **[TEACHER_REVIEW_GUIDE.md](TEACHER_REVIEW_GUIDE.md)** - 課題確認・評価ガイド
 - **[CONTAINER_SETUP_MANUAL.md](CONTAINER_SETUP_MANUAL.md)** - コンテナイメージ構築ガイド（Podman版）
+
 
 
 
